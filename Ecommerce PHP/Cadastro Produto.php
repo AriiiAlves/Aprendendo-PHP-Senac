@@ -46,9 +46,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <p>Descrição</p>
                 <input type="text" name="descricao" id="descricao" placeholder="Descrição">
                 <p>Quantidade</p>
-                <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade">
+                <input type="number" min="0" name="quantidade" id="quantidade" placeholder="Quantidade">
                 <p>Valor (R$)</p>
-                <input type="number" step="0.01" name="valor" id="valor" placeholder="Valor">
+                <input type="number" step="0.01" min="0" name="valor" id="valor" placeholder="Valor">
                 <p>Imagem</p>
                 <input type="file" name="imagem" id="imagem" placeholder="Imagem">
                 <p></p>
