@@ -1,5 +1,8 @@
 <?php
 
+# Inicia a conexão com o banco de dados
+include("Conexão com banco.php");
+
 # função para retornar erros de entrada
 # retorna False se houver erros, e True se não houver
 function verificarEntrada($nome_entry, $senha_entry){
@@ -67,9 +70,6 @@ function verificarEntrada($nome_entry, $senha_entry){
     # se não houver erros
     return(True);
 }
-
-# Inicia a conexão com o banco de dados
-include("Conexão com banco.php");
 
 # Coleta de variáveis via formulário de HTML
 if($_SERVER["REQUEST_METHOD"] == "POST"){
