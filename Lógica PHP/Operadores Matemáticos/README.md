@@ -4,5 +4,5 @@
 - Subtração -> -
 - Multiplicação -> *
 - Divisão -> /
-- Exponenciação -> *
+- Exponenciação -> **
 - Resto da divisão -> %
