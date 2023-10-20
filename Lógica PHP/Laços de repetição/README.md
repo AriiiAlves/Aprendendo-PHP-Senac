@@ -1,6 +1,6 @@
 # Laços de repetição
 
-**For**
+## **For**
 
 ```php
     for ($i = 0; $i < 10; $i++){
@@ -9,7 +9,7 @@
 ```  
 Saída: `0 1 2 3 4 5 6 7 8 9`
 
-**While**
+## **While**
 
 ```php
     $i = 0;
@@ -20,7 +20,7 @@ Saída: `0 1 2 3 4 5 6 7 8 9`
 ```  
 Saída: `0 1 2 3 4 5 6 7 8 9`
 
-**Do While**
+## **Do While**
 
 Garante que o bloco será executado pelo menos uma vez, mesmo se a condição inicial for falsa.
 
