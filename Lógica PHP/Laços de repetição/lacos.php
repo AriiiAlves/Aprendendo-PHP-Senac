@@ -1,5 +1,13 @@
 <?php
 
+// for
+for ($i = 0; $i < 10; $i++){
+    echo "$i ";
+    $i++;
+}
+
+echo '<br>';
+
 // while
 $num1 = 0;
 while ($num1 < 10){
@@ -18,11 +26,5 @@ do{
 while ($num2 == "Texto");
 
 echo '<br>';
-
-// for
-for ($i = 0; $i < 10; $i++){
-    echo "$i ";
-    $i++;
-}
 
 ?>
