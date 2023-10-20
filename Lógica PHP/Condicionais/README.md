@@ -1,6 +1,6 @@
 # Estruturas condicionais
 
-**Estrutura normal**
+## **Estrutura normal**
 ```php
     $n1 = 1;
     $n2 = 2;
@@ -14,7 +14,7 @@
     }
 ```
 
-**Com operador ternário**
+## **Com operador ternário**
 
 Estrutura do operador ternário: <condicional> ? <valor se verdadeiro> : <valor se falso>
 ```php
@@ -22,7 +22,7 @@ Estrutura do operador ternário: <condicional> ? <valor se verdadeiro> : <valor 
     echo($var1 == $var2 ? "As variáveis são iguais" : "As variáveis são diferentes");
 ```
 
-**Switch**
+## **Switch**
 
 Substitui uma série de declarações `if` e `else if`. O case `default` sempre corresponde a tudo que não foi correspondido pelos outros cases.
 
