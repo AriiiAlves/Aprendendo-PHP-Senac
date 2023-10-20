@@ -16,7 +16,7 @@
 
 ## **Com operador ternário**
 
-Estrutura do operador ternário: <condicional> ? <valor se verdadeiro> : <valor se falso>
+Estrutura do operador ternário: `<condicional> ? <valor se verdadeiro> : <valor se falso>`
 ```php
     // Com operador ternário
     echo($var1 == $var2 ? "As variáveis são iguais" : "As variáveis são diferentes");
