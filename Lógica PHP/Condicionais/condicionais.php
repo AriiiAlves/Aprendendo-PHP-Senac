@@ -33,4 +33,24 @@ echo("<br>");
 # Estrutura -> <condicional> ? <valor se verdadeiro> : <valor se falso>
 echo($var1 == $var2 ? "É igual" : "É diferente");
 
+// Quebra de linha
+echo("<br>");
+
+// switch
+$porta = 'Verde';
+switch($porta){
+    case 'Azul':
+        echo 'A porta é azul.';
+        break;
+    case 'Roxo':
+        echo 'A porta é roxa.';
+        break;
+    case 'Verde':
+        echo 'A porta é verde.';
+        break;
+    default:
+        echo 'Selecione uma opção viável.';
+        break;
+}
+
 ?>
