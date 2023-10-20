@@ -7,13 +7,14 @@ Quando utilizamos o GET, os parâmetros são passados no **cabeçalho da requisi
 O seguinte código:
 ```php
     if(isset($_GET['login'])){
-    echo $_GET['login'];
+        echo $_GET['login'];
     }
     if(isset($_GET['senha'])){
         echo $_GET['senha'];
     }
 ```
-Retornará o login e a senha na URI: `http://localhost/Lógica%20PHP/Métodos%20GET%20e%20POST/GET.php?login=Ariel&senha=123`.  
+Retornará o login e a senha na URI: `http://localhost/Lógica%20PHP/Métodos%20GET%20e%20POST/GET.php?login=Ariel&senha=123`.
+
 O `echo` serve somente para verificar o login e a senha na página HTML.
 
 ## **POST**
@@ -23,23 +24,22 @@ O POST, ao contrário do GET, envia os parâmetros no corpo da requisição HTTP
 O seguinte código:
 ```php
     if(isset($_POST['login'])){
-    echo $_POST['login'];
+        echo $_POST['login'];
     
     }
     if(isset($_POST['senha'])){
         echo $_POST['senha'];
     }
 ```
-Não retornará o login e a senha na URI: `http://localhost/Lógica%20PHP/Métodos%20GET%20e%20POST/POST.php`  
+Não retornará o login e a senha na URI: `http://localhost/Lógica%20PHP/Métodos%20GET%20e%20POST/POST.php`
+
 O `echo` serve somente para verificar o login e a senha na página HTML.
 
-Então se usarmos o método `POST` protegemos os dados submetidos pelo formulário, já que eles não aparecem na **URI**?
-
-Não. A única coisa que o `POST` faz é enviar os parâmetros no **. Se inspecionarmos a requisição, conseguimos ter acesso a eles:
+Então se usarmos o método `POST` protegemos os dados submetidos pelo formulário, já que eles não aparecem na **URI**? Não. A única coisa que o `POST` faz é enviar os parâmetros no **corpo da requisição**. Se inspecionarmos a requisição, conseguimos ter acesso a eles:
 
 ![Alt text](image.png)
 
-Se quisermos proteger, de fato, nossa aplicação, precisamos utilizar a "versãos segura" do HTTP, o HTTPS. Com ela, conseguimos criptografar os dados enviados.
+Se quisermos proteger, de fato, nossa aplicação, precisamos utilizar a "versão segura" do HTTP, o HTTPS. Com ela, conseguimos criptografar os dados enviados.
 
 ## **Diferenças entre GET e POST**
 
