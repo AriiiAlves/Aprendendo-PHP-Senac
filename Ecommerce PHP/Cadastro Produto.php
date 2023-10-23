@@ -65,8 +65,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
     $quantidade = $_POST['quantidade'];
-    $valor = $_POST['valor'];
-    $imagem = $_POST['imagem'];
+    $valor = str_replace(",", ".", $_POST['valor']);
+
+    # Inserção e criptografia da imagem
+    if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK){
+        $tipo = exif_imagetype($_FILES['imagem']['tmp_name']);
+
+        if ($tipo !== false){
+            // O arquivo é uma imagem
+            $imagem_temp = $_FILES['imagem']['tmp_name'];
+            $imagem = file_get_contents($imagem_temp);
+            $imagem_base64 = base64_encode($imagem);
+        } else{
+            // O arquivo não é uma imagem
+            $imagem = file_get_contents ("C:\\xampp\\htdocs\\Ecommerce PHP - TI 26\\Img\\alert.png");
+            $imagem_base64 = base64_encode($imagem);
+        }
+    } else{
+        // O arquivo não foi enviado
+        $imagem = file_get_contents ("C:\\xampp\\htdocs\\Ecommerce PHP - TI 26\\Img\\alert.png");
+        $imagem_base64 = base64_encode($imagem);
+    }
 
     if(verificarEntrada($nome, $descricao, $quantidade, $valor)){
         $query = "SELECT COUNT(usu_id) FROM usuarios WHERE usu_nome = '$nome'";
@@ -77,21 +96,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if ($cont > 0){
             echo "<script> window.alert('Produto já cadastrado!'); </script>";
-        }
-        else{
+        } else{
 
             # CORRIGIR: a página trava quando coloca o b64 da imagem
 
-            $query = "INSERT INTO produtos(pd_nome, pd_desc, pd_quant, pd_valor, pd_img, pd_ativo) VALUES('$nome', '$descricao', '$quantidade', '$valor', '$imagem', 'n')";
+            $query = "INSERT INTO produtos(pd_nome, pd_desc, pd_quant, pd_valor, pd_img, pd_ativo) VALUES('$nome', '$descricao', '$quantidade', '$valor', '$imagem_base64', 'n')";
             mysqli_query($link, $query);
             echo "<script> window.alert('Produto cadastrado com sucesso!'); </script>";
             echo "<script> window.location.href='Cadastro Produto.php'; </script>";
         }
-    }
-    else{
+    } else{
         echo "<script> window.location.href='Cadastro Produto.php'; </script>";
     }
-    
 }
 
 ?>
