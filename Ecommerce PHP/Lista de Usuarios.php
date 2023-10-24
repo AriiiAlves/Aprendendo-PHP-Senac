@@ -29,7 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($ativo == 's') {
         $sql = "SELECT * FROM usuarios WHERE usu_ativo = 's'";
         $retorno = mysqli_query($link, $sql);
-    } else {
+    } else if ($ativo == 'all'){
+        $sql = "SELECT * FROM usuarios WHERE usu_ativo = 's' or usu_ativo = 'n'";
+        $retorno = mysqli_query($link, $sql);
+    }
+    else {
         $sql = "SELECT * FROM usuarios WHERE usu_ativo = 'n'";
         $retorno = mysqli_query($link, $sql);
     }
@@ -42,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="Lista de Usuarios.php" method="post">
             <input type="radio" name="ativo" class="radio" value="s" required onclick="submit()" <?= $ativo == 's' ? "checked" : "" ?>> Ativos
             <input type="radio" name="ativo" class="radio" value="n" required onclick="submit()" <?= $ativo == 'n' ? "checked" : "" ?>> Inativos
+            <input type="radio" name="ativo" class="radio" value="all" required onclick="submit()" <?= $ativo == 'all' ? "checked" : "" ?>> Todos
         </form>
 
         <div class="container">
