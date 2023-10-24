@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <!-- Traz somente a coluna 3 [Quantidade] do banco -->
                         <td><?= $tbl[3] ?></td>
                         <!-- Traz somente a coluna 4 [Preço] do banco -->
-                        <td><?= $tbl[4] ?></td>
+                        <td><label>R$ <?= number_format($tbl[4], 2) ?></td>
                         <!-- Traz somente a coluna 5 [Imagem] do banco -->
                         <td><img width="90px" height="90px" src="data:image/png;base64,<?= $tbl[6] ?>"></td>
                         <!-- Ao clicar no botão ele já traz o id do usuário para a página do alt -->

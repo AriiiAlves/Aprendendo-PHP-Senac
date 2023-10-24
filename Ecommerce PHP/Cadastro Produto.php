@@ -78,12 +78,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $imagem_base64 = base64_encode($imagem);
         } else{
             // O arquivo não é uma imagem
-            $imagem = file_get_contents ("C:\\xampp\\htdocs\\Ecommerce PHP - TI 26\\Img\\alert.png");
+            $imagem = file_get_contents (".\\Img\\alert.png");
             $imagem_base64 = base64_encode($imagem);
         }
     } else{
         // O arquivo não foi enviado
-        $imagem = file_get_contents ("C:\\xampp\\htdocs\\Ecommerce PHP - TI 26\\Img\\alert.png");
+        $imagem = file_get_contents (".\\Img\\alert.png");
         $imagem_base64 = base64_encode($imagem);
     }
 
@@ -119,7 +119,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </head>
     <body>
         <div>
-            <form action="Cadastro Produto.php" method="post">
+            <form action="Cadastro Produto.php" method="post" enctype="multipart/form-data">
                 <h1>Cadastro de produto</h1>
                 <p>Nome</p>
                 <input type="text" name="nome" id="nome" placeholder="Nome do produto">
