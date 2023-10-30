@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td><?= $tbl[1] ?></td>
                         <!-- Ao clicar no botão ele já traz o id do usuário para a página do alt -->
                         <td>
-                            <a href="alterausuario.php?id=<? $tbl[0] ?>">
+                            <a href="Altera usuario.php?id=<?= $tbl[0] ?>">
                                 <input type="button" value="Alterar Dados">
                             </a>
                         </td>

@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td><img width="90px" height="90px" src="data:image/png;base64,<?= $tbl[6] ?>"></td>
                         <!-- Ao clicar no botão ele já traz o id do usuário para a página do alt -->
                         <td>
-                            <a href="alterausuario.php?id=<? $tbl[0] ?>">
+                            <a href="Altera produto.php?id=<?= $tbl[0] ?>">
                                 <input type="button" value="Alterar Dados">
                             </a>
                         </td>
