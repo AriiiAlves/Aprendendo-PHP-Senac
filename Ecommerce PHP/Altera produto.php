@@ -1,7 +1,7 @@
 <?php
 
-# Inicia a conexão com o banco de dados
-include("Conexão com banco.php");
+# Nav + Variáveis de conexão com banco
+include("Cabecalho.php");
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $id = $_POST['id'];
@@ -56,10 +56,10 @@ while($tbl = mysqli_fetch_array($retorno)){
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" rel="stylesheet" href="./Css/Cadastro.css">
+    <link rel="stylesheet" rel="stylesheet" href="./Css/Visão Adm.css">
 </head>
 
 <body>

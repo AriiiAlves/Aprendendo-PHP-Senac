@@ -1,0 +1,203 @@
+html{
+  background-color: hwb(295 0% 87%); /* Define a cor de fundo do menu */
+}
+
+.menu {
+  list-style-type: none; /* Remove os marcadores de lista */
+  margin: 0;
+  padding: 0;
+  background-color: hwb(0 95% 5%); /* Define a cor de fundo do menu */
+  border-radius: 10px;
+}
+
+.menu li {
+  display: inline-block; /* Faz com que os itens de menu fiquem um ao lado do outro */
+}
+
+.menu li a {
+  display: block; /* Define os links como elementos de bloco para ocuparem todo o espaço horizontal disponível */
+  padding: 8px 16px; /* Adiciona espaçamento interno aos links */
+  text-decoration: none; /* Remove a decoração de texto padrão (sublinhado) */
+  color: #333; /* Define a cor do texto dos links */
+}
+
+.menu li a:hover {
+  background-color: #550469; /* Define a cor de fundo ao passar o mouse sobre os links */
+  color: #fff; /* Define a cor do texto ao passar o mouse sobre os links */
+  border-radius: 10px;
+}
+
+.menuloja{
+  float:right;
+}
+
+
+/* DIV DO FORMULÁRIO */
+.formulario{
+  float: left;
+  margin-left: 10%;
+}
+
+.profile{
+float: right;
+
+}
+
+/* PADRONIZAÇÃO DA TAG FORM */
+form{
+  background-color: rgb(205, 191, 211);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  padding: 20px;
+  width: 300px;
+}
+
+input{
+  background-color: rgb(205, 191, 211);
+  border-radius: 3px;
+
+}
+
+input[type="text"],
+  input[type="password"],
+  input[type="number"],
+  input[type="decimal"],
+  input[type="date"],
+  input[type="file"],
+  textarea {
+    background-color: #e0dceb;
+    border: none;
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    resize: none;
+    
+  }
+
+/* ESTILO DAS TABELAS*/
+
+table {
+  border-collapse: collapse;
+  text-align: center;
+  color: #eee;
+  text-decoration: #bbb0be;
+  width: 75%;
+  margin:auto;
+}
+h2{
+
+  color: #e0dceb;
+}
+h1{
+
+  color: #e0dceb;
+}
+p{
+
+  color: #e0dceb;
+}
+
+.caixaexclui{
+  width: 300px;
+  height: 300px;
+  float: center;
+}
+
+/* IMAGEM DO ALTERA PRODUTO */
+.imagem_atual{
+  float: right;
+  position: relative;
+  margin-top: 1.5%;
+  margin-right: 20%;
+  max-width: 100%;
+  height: 500px;
+  object-fit: fixed;
+  border-radius: 10px;
+}
+/* FORM DO ALTERA PRODUTO */
+.visualizaproduto{
+    background-color: #9569a6;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    margin-left: 10px;
+    padding: 20px;
+    width: 500px;
+  }
+
+  .finalizabotao
+  {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: smaller;
+  }
+
+  .MostraSenha {
+      cursor: pointer;
+  }
+
+
+  /* Visão loja */
+
+  .product-card {
+    display: inline-block;
+    width: 350px;
+    height: 400px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    overflow: hidden;
+    text-align: center;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    margin: 20px;
+    background-color: white;
+  }
+  
+  .product-card img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: fixed;
+    margin-top: 20px;
+  }
+  
+  .product-price {
+    font-size: 18px;
+    color: green;
+    margin-top: 10px;
+  }
+  
+  .product-button {
+    display: block;
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: darkblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .product-button2 {
+    display: block;
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: maroon;
+    color: white;
+    border: none;
+    border-radius: 5px;
+      
+  }
+  .adquirido{
+    height: -100px;
+    z-index: 1;
+    border: 5px;
+    top: 0;
+  
+  }

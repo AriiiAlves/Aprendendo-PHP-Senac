@@ -1,7 +1,6 @@
 <?php
 
-# Inicia a conexão com o banco de dados
-include("Conexão com banco.php");
+include("Cabecalho.php");
 
 # função para retornar erros de entrada
 # retorna False se houver erros, e True se não houver
@@ -41,12 +40,6 @@ function verificarEntrada($nome_entry, $desc_entry, $quant_entry, $valor_entry){
     }
     if($cont == strlen($desc_entry)){
         $erro = 'A descrição não pode conter somente espaços.';
-        echo "<script> window.alert('$erro'); </script>";
-        return (False);
-    }
-    # verifica se $quantidade é vazio
-    if(empty($quant_entry)){
-        $erro = 'Quantidade não pode ser vazio.';
         echo "<script> window.alert('$erro'); </script>";
         return (False);
     }
@@ -112,9 +105,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 ?>
 
-<html>
+<html lang="pt-br">
     <head>
-        <link rel="stylesheet" href="./Css/Cadastro.css">
+        <link rel="stylesheet" href="./Css/Visão Adm.css">
         <title> Cadastro de produto </title>
     </head>
     <body>

@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de usuários</title>
-    <link rel="stylesheet" href="./Css/Cadastro.css">
+    <link rel="stylesheet" href="./Css/Visão Adm.css">
 </head>
 
 <?php
 
-# Inicia a conexão com o banco de dados
-include("Conexão com banco.php");
+include("Cabecalho.php");
 
 # Passando uma instrução ao banco de dados
 $sql = "SELECT * FROM usuarios WHERE usu_ativo = 's'";

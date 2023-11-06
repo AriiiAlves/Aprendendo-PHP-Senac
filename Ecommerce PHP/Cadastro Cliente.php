@@ -1,7 +1,7 @@
 <?php
 
-# Inicia a conexão com o banco de dados
-include("Conexão com banco.php");
+include("Cabecalho.php");
+# include("Conexão com banco.php");
 
 # função para retornar erros de entrada
 # retorna False se houver erros, e True se não houver
@@ -90,7 +90,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($cont > 0) {
             echo "<script> window.alert('Usuário já cadastrado!'); </script>";
         } else {
-            $query = "INSERT INTO usuarios(usu_nome, usu_senha, usu_ativo) VALUES('$nome', '$senha', 'n')";
+            # O tempero é uma concatenação de um número inteiro aleatório (pode ser grande ou pequeno) 
+            # com a data atual no formato "HH:MM:SS" (hora, minuto, segundo). Exemplo: 47982314:42:27.
+            
+            # Depois, é criado um md5 a partir dessa string gerada.
+            $tempero = md5(rand() . date('H:i:s'));
+
+            # A senha é outra hash md5 criada a partir da senha criada pelo usuário  
+            # concatenada com o tempero (hash md5 gerada com número aleatório + HH:MM:SS)
+            # ou seja: $senha . $tempero
+            $senha = md5($senha . $tempero);
+
+            # São inseridos os campos no banco de dados
+            $query = "INSERT INTO usuarios(usu_nome, usu_senha, usu_ativo, usu_tempero) VALUES('$nome', '$senha', 'n', '$tempero')";
             mysqli_query($link, $query);
             echo "<script> window.alert('Usuário cadastrado com sucesso!'); </script>";
             echo "<script> window.location.href='Cadastro Cliente.php'; </script>";
@@ -102,10 +114,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<html>
+<html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="./Css/Cadastro.css">
+    <link rel="stylesheet" href="./Css/Visão Adm.css">
     <title> Cadastro de usuário </title>
 </head>
 
