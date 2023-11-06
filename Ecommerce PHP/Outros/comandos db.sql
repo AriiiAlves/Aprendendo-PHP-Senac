@@ -6,7 +6,8 @@ CREATE TABLE usuarios(
 	usu_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     usu_nome VARCHAR(50) NOT NULL,
     usu_senha VARCHAR(50) NOT NULL,
-    usu_ativo CHAR(1) NOT NULL
+    usu_ativo CHAR(1) NOT NULL,
+    usu_tempero VARCHAR(300) NOT NULL
 );
 
 # CRIAÇÃO DE USUÁRIO
