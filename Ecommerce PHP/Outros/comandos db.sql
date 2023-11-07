@@ -47,5 +47,5 @@ CREATE TABLE clientes(
     cli_ativo CHAR(1) NOT NULL,
     cli_tempero VARCHAR(300) NOT NULL,
     cli_email VARCHAR(100) NOT NULL,
-    cli_recupera INT(6) NOT NULL
+    cli_recupera INT(6)
 );
