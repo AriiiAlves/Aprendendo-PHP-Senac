@@ -29,3 +29,23 @@ CREATE TABLE produtos(
     pd_ativo CHAR(1) NOT NULL,
     pd_img TEXT
 );
+
+# TABELA CLIENTE
+
+USE ecommerce_ariel;
+
+CREATE TABLE clientes(
+    cli_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cli_cpf BIGINT(20) NOT NULL,
+    cli_nome VARCHAR(50) NOT NULL,
+    cli_senha VARCHAR(50) NOT NULL,
+    cli_datanasc DATE NOT NULL,
+    cli_telefone BIGINT(20) NOT NULL,
+    cli_logradouro VARCHAR(100) NOT NULL,
+    cli_numero VARCHAR(10) NOT NULL,
+    cli_cidade VARCHAR(50) NOT NULL,
+    cli_ativo CHAR(1) NOT NULL,
+    cli_tempero VARCHAR(300) NOT NULL,
+    cli_email VARCHAR(100) NOT NULL,
+    cli_recupera INT(6) NOT NULL
+);

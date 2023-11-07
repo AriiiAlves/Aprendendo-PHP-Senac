@@ -11,11 +11,11 @@
 <body>
     <?php
 
-    include("Cabecalho.php");
+    include("Cabecalho Cliente.php");
 
     ?>
 
-    <div style="width: 100%; height:10px; background-color:transparent;">
+    <div style="width: 100%; height:10px; background-color:transparent; text-align:center;">
         <?php
         
         $query = "SELECT * FROM produtos WHERE pd_ativo = 's'";
@@ -27,7 +27,7 @@
         <div class="product-card">
             <img src="data:image/jpeg;base64,<?=$tbl[6]?>" alt="Imagem do produto">
             <h3 class="product-title"><?=$tbl[1]?></h3>
-            <h3 class="product-price"><?=$tbl[4]?></h3>
+            <h3 class="product-price">R$ <?=number_format($tbl[4], 2, ',', '.')?></h3>
             
             <?php
             if ($tbl[3] > 0){

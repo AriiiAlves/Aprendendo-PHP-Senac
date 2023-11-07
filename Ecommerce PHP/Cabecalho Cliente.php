@@ -22,13 +22,9 @@ script em JS manda o usuário de volta para login.php-->
 
 <div>
     <ul class="menu">
-        <li><a href="Cadastro Usuario.php">Cadastrar usuário</a></li>
-        <li><a href="Lista de Usuarios.php">Lista de usuários</a></li>
-        <li><a href="Cadastro Produto.php">Cadastrar produto</a></li>
-        <li><a href="Lista de Produtos.php">Lista de produtos</a></li>
-        <!-- <li><a href="listacliente.php">LISTAR CLIENTES</a></li>-->
         <li><a href="Loja.php">Loja</a></li>
-        <li class="menuloja"><a href="Logout Adm.php">SAIR</a></li>
+        <li><a href="#">Carrinho</a></li>
+        <li class="menuloja"><a href="Logout Cliente.php">SAIR</a></li>
 
         <!--Valida se sessão de usuário está autenticada, senão, retorna para login -->
         <?php
@@ -37,8 +33,8 @@ script em JS manda o usuário de volta para login.php-->
         <li class="profile">Olá <?= strtoupper($nomeusuario) ?></li>
         <?php
         } else {
-            echo "<script>window.alert('USUÁRIO NÃO AUTENTICADO');
-            window.location.href='login.php';</script>";
+            echo "<script>window.alert('CLIENTE NÃO AUTENTICADO');
+            window.location.href='Login Cliente.php';</script>";
         }
         ?>
     </ul>
