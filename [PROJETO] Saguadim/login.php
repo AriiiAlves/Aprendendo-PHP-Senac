@@ -1,24 +1,29 @@
 <?php
 
+# Inicia variável de sessão
 session_start();
 
+# Inclui dados de conexão do banco
 include("conectadb.php");
 
+# Após click no POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $login = $_POST['login'];
+    $email = $_POST['email'];
     $senha = $_POST['senha'];
 
+    # Query de validação se o usuário existe
     $sql = "SELECT COUNT(usu_id) FROM usuarios 
-        WHERE usu_nome = '$login' 
+        WHERE usu_email = '$email' 
         AND usu_senha = '$senha' 
         AND usu_status = 's'";
+    $retorno = mysqli_query($link, $sql);
 
     # Grava Log
+    $sql = '"' . $sql . '"';
     $sqllog = "INSERT INTO tab_log (tab_query, tab_data)
-        VALUES ('$sql', NOW())";
-    mysqli_query($link, $sqllog);
+        VALUES ($sql, NOW())";
 
-    $retorno = mysqli_query($link, $sql);
+    mysqli_query($link, $sqllog);
 
     while ($tbl = mysqli_fetch_array($retorno)){
         $resultado = $tbl[0];
@@ -29,16 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
     else{
         $sql = "SELECT * FROM usuarios 
-        WHERE usu_login = '$login'
+        WHERE usu_email = '$email'
         AND usu_senha = '$senha'
         AND usu_status = 's'";
+        $retorno = mysqli_query($link, $sql);
 
         # Grava Log
+        $sql = '"' . $sql . '"';
         $sqllog = "INSERT INTO tab_log (tab_query, tab_data)
-            VALUES ('$sql', NOW())";
+            VALUES ($sql, NOW())";
         mysqli_query($link, $sqllog);
-
-        $retorno = mysqli_query($link, $sql);
         
         while ($tbl = mysqli_fetch_array($retorno)){
             $_SESSION['idusuario'] = $tbl[0];

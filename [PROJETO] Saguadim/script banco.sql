@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS usuarios(
     usu_login VARCHAR(20) NOT NULL,
     usu_senha VARCHAR(50) NOT NULL,
     usu_status CHAR(1),
-    usu_key VARCHAR(10)
+    usu_key VARCHAR(10),
+    usu_email VARCHAR(100) NOT NULL
 );
 
 -- Criação da tabela de cliente
@@ -69,7 +70,8 @@ CREATE TABLE IF NOT EXISTS item_venda(
 -- Criação da tabela de log
 CREATE TABLE IF NOT EXISTS tab_log(
     tab_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    tab_query TEXT NOT NULL
+    tab_query TEXT NOT NULL,
+    tab_data DATETIME NOT NULL
 );
 
 -- Criação da tabela de fornecedor
