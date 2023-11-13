@@ -6,11 +6,11 @@
     include("Conexão com banco.php");
 
     if ($_SERVER['REQUEST_METHOD'] == "POST"){
-        $nome = $_POST['nomeusuario'];
+        $email = $_POST['email'];
         $senha = $_POST['senha'];
 
         # Confere se o usuário existe
-        $sql = "SELECT count(cli_id) FROM clientes WHERE cli_nome = '$nome'";
+        $sql = "SELECT count(cli_id) FROM clientes WHERE cli_email = '$email'";
         $retorno = mysqli_query($link, $sql);
         $tbl = mysqli_fetch_array($retorno);
         if($tbl[0] == 0){
@@ -19,7 +19,7 @@
         }
         else{
             # Busca o tempero
-            $sql = "SELECT cli_tempero FROM clientes WHERE cli_nome = '$nome'";
+            $sql = "SELECT cli_tempero FROM clientes WHERE cli_email = '$email'";
             $retorno = mysqli_query($link, $sql);
             $tempero = mysqli_fetch_array($retorno)[0];
             # $tempero = $tbl[0];
@@ -31,7 +31,7 @@
     
             # Conta quantos usuários com 'usu_nome' possuem essa $senha no banco
             # de dados.
-            $sql = "SELECT COUNT(cli_id) FROM clientes WHERE cli_nome = '$nome' AND cli_senha = '$senha'";
+            $sql = "SELECT COUNT(cli_id) FROM clientes WHERE cli_email = '$email' AND cli_senha = '$senha'";
             $retorno = mysqli_query($link, $sql);
             while ($tbl = mysqli_fetch_array($retorno)) {
                 $cont = $tbl[0];
@@ -45,7 +45,7 @@
             #
             # Se não, diz que o usuário ou senha estão incorretos e retorna ao formulário.
             if($cont == 1){
-                $sql = "SELECT cli_id, cli_nome FROM clientes WHERE cli_nome = '$nome' AND cli_senha = '$senha' AND cli_ativo = 's'";
+                $sql = "SELECT cli_id, cli_nome FROM clientes WHERE cli_email = '$email' AND cli_senha = '$senha' AND cli_ativo = 's'";
                 $retorno = mysqli_query($link, $sql);
                 while ($tbl = mysqli_fetch_array($retorno)) {
                     $_SESSION['idusuario'] = $tbl[0];
@@ -70,7 +70,7 @@
     <body>
         <form action="Login Cliente.php" method="POST">
             <h1>Login do Cliente</h1>
-            <input type="text" name="nomeusuario" id="nome" placeholder="Nome">
+            <input type="text" name="email" id="email" placeholder="Email">
             <p></p>
             <input type="password" id="senha" name="senha" placeholder="Senha">
             <p></p>

@@ -47,5 +47,33 @@ CREATE TABLE clientes(
     cli_ativo CHAR(1) NOT NULL,
     cli_tempero VARCHAR(300) NOT NULL,
     cli_email VARCHAR(100) NOT NULL,
-    cli_recupera INT(6)
+    cli_recupera INT(6) NOT NULL
 );
+
+# TABELA CARRINHO
+
+CREATE TABLE carrinho(
+    car_id VARCHAR(11) NOT NULL PRIMARY KEY,
+    car_valorvenda DECIMAL(10,2) NOT NULL,
+    car_datavenda DATE NOT NULL,
+    car_total_item DECIMAL(10,2) NOT NULL,
+    car_finalizado CHAR(1) NOT NULL,
+    fk_cli_id INT(11) NOT NULL # Fazer relação de chave estrangeira!!
+)
+
+# TABELA ITEM CARRINHO
+
+CREATE TABLE item_carrinho(
+    item_car_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    fk_car_id VARCHAR(50) NOT NULL, # Fazer relação de chave estrangeira!!
+    fk_pro_id INT(11) NOT NULL, # Fazer relação de chave estrangeira!!
+    car_item_quantidade INT(11) NOT NULL
+)
+
+# TABELA FAVORITOS
+
+CREATE TABLE favoritos(
+    fav_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    fav_cli_id INT(11) NOT NULL,
+    fav_pro_id INT(11) NOT NULL
+)

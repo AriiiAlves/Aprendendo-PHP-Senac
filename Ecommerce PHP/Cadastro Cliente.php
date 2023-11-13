@@ -71,10 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    if (verificarEntrada($nome, $senha)) {
+    if (verificarEntrada($nome, $senha)) { 
         # Passando instruções SQL para o banco
         # Validando se o usuário já existe
-        $query = "SELECT COUNT(cli_id) FROM clientes WHERE cli_nome = '$nome'";
+        $query = "SELECT COUNT(cli_id) FROM clientes WHERE cli_email = '$email'";
         $retorno_da_query = mysqli_query($link, $query);
         while ($array = mysqli_fetch_array($retorno_da_query)) {
             $cont = $array[0];
