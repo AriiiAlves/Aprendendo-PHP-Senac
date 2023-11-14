@@ -5,7 +5,7 @@ include("Conexão com banco.php");
 
 session_start();
 isset($_SESSION['nomeusuario'])?$nomeusuario = $_SESSION['nomeusuario']: "";
-$nomeusuario = $_SESSION['nomeusuario'];
+isset($_SESSION['idusuario'])?$idusuario = $_SESSION['idusuario']: "";
 
 ?>
 

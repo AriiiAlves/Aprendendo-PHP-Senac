@@ -53,22 +53,22 @@ CREATE TABLE clientes(
 # TABELA CARRINHO
 
 CREATE TABLE carrinho(
-    car_id VARCHAR(11) NOT NULL PRIMARY KEY,
+    car_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     car_valorvenda DECIMAL(10,2) NOT NULL,
     car_datavenda DATE NOT NULL,
     car_total_item DECIMAL(10,2) NOT NULL,
     car_finalizado CHAR(1) NOT NULL,
-    fk_cli_id INT(11) NOT NULL # Fazer relação de chave estrangeira!!
-)
+    fk_cli_id INT(11) NOT NULL
+);
 
 # TABELA ITEM CARRINHO
 
 CREATE TABLE item_carrinho(
-    item_car_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    fk_car_id VARCHAR(50) NOT NULL, # Fazer relação de chave estrangeira!!
-    fk_pro_id INT(11) NOT NULL, # Fazer relação de chave estrangeira!!
+    item_car_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    fk_car_id INT(11) NOT NULL,
+    fk_pro_id INT(11) NOT NULL,
     car_item_quantidade INT(11) NOT NULL
-)
+);
 
 # TABELA FAVORITOS
 
@@ -76,4 +76,11 @@ CREATE TABLE favoritos(
     fav_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     fav_cli_id INT(11) NOT NULL,
     fav_pro_id INT(11) NOT NULL
-)
+);
+
+
+# Criando constraints de chaves estrangeiras
+
+ALTER TABLE carrinho ADD CONSTRAINT carrinho_cliente FOREIGN KEY (fk_cli_id) REFERENCES clientes(cli_id);
+ALTER TABLE item_carrinho ADD CONSTRAINT item_carrinho_carrinho FOREIGN KEY (fk_car_id) REFERENCES carrinho(car_id);
+ALTER TABLE item_carrinho ADD CONSTRAINT item_carrinho_produtos FOREIGN KEY (fk_pro_id) REFERENCES produtos(pd_id);
