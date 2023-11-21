@@ -12,8 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
     $preco = (float)$preco;
     $totalitem = ($preco);
 
+    
     # Gera um random para definir um carrinho único e exclusivo
-    $numerocarrinho = ($idusuario . RAND());
+    $numerocarrinho = ($idusuario . RAND(1000, 9999) . RAND(1000, 9999));
+    
+
+    $sql = "SELECT COUNT(car_id) FROM carrinho WHERE car_id = $numerocarrinho";
+
+    while (mysqli_fetch_array(mysqli_query($link, $sql))[0] > 0){
+        # Gera um random para definir um carrinho único e exclusivo
+        $numerocarrinho = ($idusuario . RAND(1000, 9999) . RAND(1000, 9999));
+        $sql = "SELECT COUNT(car_id) FROM carrinho WHERE car_id = $numerocarrinho";
+        echo("loop ");
+    }
 
     # Validação Cliente logado
 
@@ -23,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
     }else{
         # Verifica se existe um carrinho já aberto
         $sql = "SELECT COUNT(car_id) FROM carrinho INNER JOIN clientes ON fk_cli_id = cli_id WHERE cli_id = $idusuario AND car_finalizado = 'n'";
+       // echo(" " . $sql . "<br>");
         $retorno = mysqli_query($link, $sql);
 
         # Se o carrinho não existe cria um novo carrinho
@@ -31,10 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
             if ($cont == 0){
                 $valor_venda = $quantidade * $preco;
-
+                
                 # Se o carrinho não existe gera um novo carrinho e insere na tabela item_carrinho
                 $sql = "INSERT INTO carrinho(car_id, car_valorvenda, fk_cli_id, car_finalizado)
                 VALUES ($numerocarrinho, $valor_venda, $idusuario, 'n')";
+                echo(" " . $sql);
                 mysqli_query($link, $sql);
 
                 # Insere o item no carrinho
