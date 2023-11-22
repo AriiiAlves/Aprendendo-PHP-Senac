@@ -4,7 +4,7 @@ session_start();
 
 session_destroy();
 
-header("login.php");
+header("login.html");
 
 exit;
 

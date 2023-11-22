@@ -1,0 +1,121 @@
+/* Reset de margin e padding para garantir consistência */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CABEÇALHO */
+.header {
+    background-color: #000;
+}
+
+.menu {
+    list-style: none;
+    overflow: hidden;
+    padding: 10px 20px;
+}
+
+.menu li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.menu li a:hover {
+    background-color: #333;
+}
+
+/* Estilo específico para o link de perfil */
+.profile {
+    float: right;
+}
+
+.profile a {
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+
+#nome, #nomeproduto, #fornecedor {
+    text-transform: uppercase;
+}
+
+/* Estilo para a mensagem de alerta quando o usuário não está autenticado */
+.alert-message {
+    background-color: #ff0000;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+/* TÍTULO */
+.titulo {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* FORMS */
+body {
+    background-image: url('./Imagens/Salgados Background.jpg');
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffffc9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}

@@ -22,6 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     # Verifica se o usuário já existe
     if($resultado >= 1){
         echo "<script>window.alert('Email já cadastrado.')</script>";
+        echo "<script>window.location.href='login.html'</script>";
     }
     else{
         $sql = "INSERT INTO usuarios(usu_login, usu_senha, usu_status, usu_key, usu_email) VALUES('$login', '$senha', 's', '$key', '$email')";

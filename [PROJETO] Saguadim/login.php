@@ -30,7 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     if ($resultado == 0){
-        echo("<script>window.alert('Usuário incorreto!');</script>");
+        echo("<script>window.alert('Usuário ou senha incorretos.');</script>");
+        echo "<script>window.location.href='login.html'</script>";
     }
     else{
         $sql = "SELECT * FROM usuarios 

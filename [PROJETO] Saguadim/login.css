@@ -1,0 +1,63 @@
+/* LOGIN */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /*background-color: linear-gradient(0deg, transparent 50%, rgba(212, 143, 83, 0.1) 50%);*/
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(0, 159, 170, 0.945),
+        rgba(0, 159, 170, 0.945) 14px,
+        #000000 10px,
+        #000000 20px
+    );
+}
+
+/* Estilos para os formulários */
+.form-container {
+    max-width: 300px;
+    text-align: center;
+    display: block;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-container input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Estilos para os links de alternância entre os formulários */
+.toggle-form {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.toggle-form:hover {
+    color: black;
+}
