@@ -3,7 +3,7 @@
 include("cabecalho.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $nome = $_POST['fornecedor'];
+    $nome = strtoupper($_POST['fornecedor']);
 
     $sql = "SELECT COUNT(fornecedor_id) FROM fornecedores WHERE fornecedor_nome = '$nome'";
     $cont = mysqli_fetch_array(mysqli_query($link, $sql))[0];
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

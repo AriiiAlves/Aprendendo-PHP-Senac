@@ -11,12 +11,12 @@ isset($_SESSION['idusuario'])?$idusuario = $_SESSION['idusuario']: "";
 
 <div class="header">
     <ul class="menu">
-        <li><a href="#.php">Cadastrar usuário</a></li>
-        <li><a href="#.php">Usuários</a></li>
+        <!--<li><a href="#.php">Cadastrar usuário</a></li>-->
+        <li><a href="listausuario.php">Usuários</a></li>
         <li><a href="cadastraproduto.php">Cadastrar produto</a></li>
-        <li><a href="#.php">Produtos</a></li>
+        <li><a href="listaproduto.php">Produtos</a></li>
         <li><a href="cadastrafornecedor.php">Cadastrar fornecedor</a></li>
-        <li><a href="#.php">Fornecedores</a></li>
+        <li><a href="listafornecedor.php">Fornecedores</a></li>
         <li><a href="#.php">Clientes</a></li>
         <li><a href="#.php">Encomendas</a></li>
 

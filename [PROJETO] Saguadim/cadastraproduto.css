@@ -43,7 +43,7 @@
     border-radius: 20px;
 }
 
-#nome, #nomeproduto, #fornecedor {
+#nome, #fornecedor {
     text-transform: uppercase;
 }
 
@@ -118,4 +118,107 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+/* TABELA */
+
+/* Estilo para a div que envolve a tabela */
+.table-container {
+    width: 80%;
+    max-width: 850px;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.table-container a{
+    text-decoration: none;
+    color: #007bff;
+}
+
+.table-container a:hover{
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+td{
+    text-align: center;
+}
+
+td:last-child {
+    text-align: center;
+    font-weight: bold;
+}
+
+td:last-child::before {
+    content: attr(data-status);
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 12px;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+td:last-child[data-status="Ativo"]::before {
+    background-color: #5cb85c;
+}
+
+td:last-child[data-status="Inativo"]::before {
+    background-color: #d9534f;
+}
+
+/* Estilos para a mensagem */
+.message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    border-radius: 10px; /* Cantos arredondados */
+    max-width: 400px; /* Largura máxima para a mensagem */
+    text-align: center; /* Centraliza o texto */
+    font-family: Arial, sans-serif; /* Define a família da fonte */
+    color: #333; /* Cor do texto */
+}
+
+.close-btn {
+    float: right;
+    cursor: pointer;
+    color: #aaa; /* Cor do botão de fechar */
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.close-btn:hover {
+    color: #000; /* Cor do botão de fechar ao passar o mouse */
 }
