@@ -11,7 +11,7 @@ isset($_SESSION['idusuario'])?$idusuario = $_SESSION['idusuario']: "";
 
 <div class="header">
     <ul class="menu">
-        <!--<li><a href="#.php">Cadastrar usuário</a></li>-->
+        <li><a href="cadastrausuario.php">Cadastrar usuário</a></li>
         <li><a href="listausuario.php">Usuários</a></li>
         <li><a href="cadastraproduto.php">Cadastrar produto</a></li>
         <li><a href="listaproduto.php">Produtos</a></li>
