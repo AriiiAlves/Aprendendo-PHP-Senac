@@ -38,25 +38,27 @@ $email = $retorno[11];
     <title>Carrinho</title>
 </head>
 <body>
-    <div class="formulario" style="width: 100%; justify-content:center;">
-        <form class="visualizaproduto" action="Ver Produto.php" method="post" enctype="multipart/form-data">
-            <label>CPF</label>
-            <input type="text" value="<?= $cpf ?>" readonly>
-            <label>Nome</label>
-            <input type="text" value="<?= $nome ?>" readonly>
-            <label>Data de nascimento</label>
-            <input type="date" value="<?= $datanasc ?>" readonly>
-            <label>Telefone</label>
-            <input type="text" value="<?= $telefone ?>" readonly>
-            <label>Logradouro</label>
-            <input type="text" value="<?= $logradouro ?>" readonly>
-            <label>Número</label>
-            <input type="text" value="<?= $numero ?>" readonly>
-            <label>Cidade</label>
-            <input type="text" value="<?= $cidade ?>" readonly>
-            <label>Email</label>
-            <input type="text" value="<?= $email ?>" readonly>
-        </form>      
+    <div style="display: flex; flex-wrap:wrap; width:100%; height:80vh; justify-content:center; align-items:center">
+        <div style="width: 400px;">
+            <form class="visualizaproduto" style="margin:0;width:auto" action="Ver Produto.php" method="post" enctype="multipart/form-data">
+                <label>CPF</label>
+                <input type="text" value="<?= $cpf ?>" readonly>
+                <label>Nome</label>
+                <input type="text" value="<?= $nome ?>" readonly>
+                <label>Data de nascimento</label>
+                <input type="date" value="<?= $datanasc ?>" readonly>
+                <label>Telefone</label>
+                <input type="text" value="<?= $telefone ?>" readonly>
+                <label>Logradouro</label>
+                <input type="text" value="<?= $logradouro ?>" readonly>
+                <label>Número</label>
+                <input type="text" value="<?= $numero ?>" readonly>
+                <label>Cidade</label>
+                <input type="text" value="<?= $cidade ?>" readonly>
+                <label>Email</label>
+                <input type="text" value="<?= $email ?>" readonly>
+            </form>      
+        </div>
     </div>
     <br>
     <div>
@@ -99,13 +101,3 @@ $email = $retorno[11];
             </div>
 </body>
 </html>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja</title>
-    <link rel="stylesheet" href="./Css/Visão Adm.css">
-</head>

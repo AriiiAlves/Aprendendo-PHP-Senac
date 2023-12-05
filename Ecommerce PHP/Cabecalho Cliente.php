@@ -24,6 +24,7 @@ script em JS manda o usuário de volta para login.php-->
     <ul class="menu">
         <li><a href="Loja.php">Loja</a></li>
         <li><a href="Carrinho.php">Carrinho</a></li>
+        <li><a href="Registro de compras.php">Registro de compras</a></li>
         <li class="menuloja"><a href="Logout Cliente.php">SAIR</a></li>
 
         <!--Valida se sessão de usuário está autenticada, senão, retorna para login -->
