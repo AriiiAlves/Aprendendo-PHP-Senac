@@ -1,0 +1,124 @@
+/* CABEÇALHO E HOME*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    background-color: #03fcdb;
+}
+
+.home{
+    margin:0;
+}
+
+.home img{
+    width: 100vw;
+}
+
+nav{
+    width: 100%;
+    height: 50px;
+    background:#03fcdb;
+}
+
+nav ul{
+    list-style: none;
+}
+nav li {
+	float: left;
+}
+
+nav li a, dropbtn{
+	display:inline-block;
+	color:rgb(255, 255, 255);
+    text-shadow: 2px 2px 5px black;
+	padding:16px 20px;
+	text-decoration:none;
+	text-align:center;
+}
+
+nav li a:hover, .dropdown:hover .dropbtn{ /*Quando a classe dropdown ("item") estive hover, o dropbtn ("sub-item") irá apresentar tal propriedade*/
+	background:#00a38d;
+    cursor: pointer;
+}
+
+nav li.dropdown{ /*listas com classe dropdown*/
+	display:inline-block;
+}
+
+.dropdown-content{
+	display:none; /*Elemento não aparece*/
+	position:absolute; /*div se comporta em relação a li, seu elemento-pai*/
+	background:#03fcdb;
+	width:6em;
+}
+
+.dropdown-content a{
+	color: white;
+	display:block; /*Faz um ficar em cima do outro*/
+	text-align:left;
+	border:1px solid rgb(0, 0, 0);
+}
+
+.dropdown:hover .dropdown-content{ 
+	display:block; /*Quando a classe dropdown ("item") estive hover, o dropbtn ("sub-item") irá aparecer*/
+    cursor: pointer;
+}
+
+/* FORMS */
+
+.container {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffffc9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
