@@ -22,12 +22,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $data_nasc = $_POST['data_nasc'];
     $convenio = $_POST['convenio'];
 
+    $rua = $_POST['rua'];
+    $numero = $_POST['numero'];
+    $bairro = $_POST['bairro'];
+    $cep = $_POST['cep'];
+    $cep = str_replace('-', '', $cep);
+
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
+
     $sql = "SELECT COUNT(CPF) FROM pacientes WHERE CPF = '$cpf'";
     $cont = mysqli_fetch_array(mysqli_query($link, $sql))[0];
 
     if ($cont == 0){
         $sql = "INSERT INTO pacientes(NOME, CPF, RG, EMAIL, CELULAR, DATA_NASC, CONVENIO) VALUES('$nome','$cpf','$rg','$email','$celular','$data_nasc','$convenio')";
         mysqli_query($link, $sql);
+        
+        $sql = "SELECT ID FROM pacientes WHERE CPF = '$cpf'";
+        $id = mysqli_fetch_array(mysqli_query($link, $sql))[0];
+
+        $sql = "INSERT INTO endereco_pacientes(FK_PACIENTE_ID, RUA, NUMERO, BAIRRO, CEP, CIDADE, ESTADO) 
+        VALUES($id,'$rua','$numero','$bairro','$cep','$cidade','$estado')";
+        mysqli_query($link, $sql);
+
         echo "<script>window.alert('Paciente cadastrado com sucesso!'); window.location.hreft='cadastra_paciente.php';</script>";
     }
     else{
@@ -65,6 +82,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <label for="convenio">Convênio</label>
             <input type="text" name="convenio" id="convenio" required><br>
 
+            <label for="nome">Rua</label>
+            <input type="text" name="rua" id="rua" required><br>
+            <label for="nome">Número</label>
+            <input type="text" name="numero" id="numero" required><br>
+            <label for="nome">Bairro</label>
+            <input type="text" name="bairro" id="bairro" required><br>
+            <label for="nome">CEP</label>
+            <input type="text" minlength="9" name="cep" id="cep" required><br>
+            <label for="nome">Cidade</label>
+            <input type="text" name="cidade" id="cidade" required><br>
+            <label for="nome">Estado</label>
+            <input type="text" name="estado" id="estado" required><br>
+
             <input type="submit" value="Cadastrar">
         </form>
     </div>
@@ -82,6 +112,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   });
   $(document).ready(function() {
     $('#rg').mask('00.000.000-00'); // Define a máscara para rg
+  });
+  $(document).ready(function() {
+    $('#cep').mask('00000-000'); // Define a máscara para cep
   });
 </script>
 

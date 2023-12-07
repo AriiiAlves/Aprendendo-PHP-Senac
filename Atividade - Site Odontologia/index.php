@@ -12,12 +12,7 @@
         <img src="./images/Background.png">
     </div>
     <footer>
-        <ul>
-            <li>Whatsapp</li>
-            <li>Instagram</li>
-            <li></li>
-        </ul>
-        <h2>Ariel Odontologia®</h2>
+        <h3 style="text-align: center; color:white; padding-top:10px; padding-bottom:10px;">Ariel Odontologia®</h3>
     </footer>
 </body>
 </html>
