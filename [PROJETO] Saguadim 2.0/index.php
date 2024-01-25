@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_ACTIVE && !empty(session_id())) {
     header("Location: subpages/home/home.html");
 } else {
     // Não há sessão ativa, então redireciona para o login
-    header("Location: subpages/autentication/login.html");
+    header("Location: subpages/login/login.html");
 }
 
 ?>

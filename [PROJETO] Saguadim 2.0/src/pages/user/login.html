@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar no Saguadim</title>
     <link rel="stylesheet" href="../../styles/login.css">
+    <script src="login.js"></script>
 </head>
 <body>
     <div class="container">
@@ -18,7 +19,8 @@
             <form action="login.php" method="post">
                 <input type="email" name="email" id="email" placeholder="Email" required>
                 <input type="password" name="senha" id="senha" placeholder="Senha" required>
-                <input type="submit" value="Entrar">
+                <span id="error"></span>
+                <input type="submit" value="Entrar" onclick="verifyLogin()">
             </form>
             <span>
                 Não tem conta? <a href="#" class="toggle-form" id="toggleCadastra">Clique aqui</a>
