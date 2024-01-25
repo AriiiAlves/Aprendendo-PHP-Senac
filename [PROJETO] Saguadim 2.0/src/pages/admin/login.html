@@ -11,7 +11,7 @@
         <div class="logo">
             <img src="../../../public/photos/saguadim_logo.png">
             <p>
-                A melhor salgaderia.<br>Na palma da sua mão.
+                A plataforma ideal para o gerenciamento da sua salgaderia.
             </p>
         </div>
         <div class="login">
@@ -37,7 +37,7 @@
         var senha = document.getElementById('senha').value;
     
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '../../functions/user_autentication.php', true);
+        xhr.open('POST', '../../functions/admin_autentication.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         
         // Callback a ser executado quando a resposta do servidor for recebida
