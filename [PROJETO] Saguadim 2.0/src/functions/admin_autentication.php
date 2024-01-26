@@ -43,15 +43,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         mysqli_query($link, $sqllog);
         
         session_set_cookie_params(60 * 60 * 24 * 30); // Define a duração da sessão para 30 dias
-        session_start(); // Inicia a sessão
+        session_start();
     
         while ($tbl = mysqli_fetch_array($retorno)){
+            $_SESSION['tiposessao'] = 'user';
             $_SESSION['idusuario'] = $tbl[0];
             $_SESSION['nomeusuario'] = $tbl[1];
         }
-    
+
         echo("1");
     }
 }
+
+exit();
 
 ?>

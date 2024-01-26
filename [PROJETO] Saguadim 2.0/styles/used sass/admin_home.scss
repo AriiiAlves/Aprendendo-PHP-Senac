@@ -25,6 +25,7 @@ nav {
     img {
         height: 55px;
         margin: 5px 0 0 5px;
+        user-select: none;
     }
 
     h2 {
@@ -37,6 +38,7 @@ nav {
         margin: 0;
         padding: 0;
         width: 100%;
+        user-select: none;
 
         li {
             a {
@@ -62,6 +64,7 @@ nav {
         height: 50px;
         border: 1px solid black;
         border-radius: 10px;
+        user-select: none;
 
         img {
             background-color: rgb(107, 107, 107);
@@ -73,14 +76,81 @@ nav {
 
         span {
             display: inline-block;
-            margin-top: 15px;
+            margin-top: 12px;
             text-decoration: none;
             color: black;
         }
     }
 
     .profile:hover {
+        transition: ease-in 0.1s;
         background-color: rgb(253, 174, 78);
+        cursor: pointer;
+    }
+
+    .details {
+        position: fixed;
+        bottom: 73px;
+        margin-left: 15px;
+        text-align: left;
+        width: 170px;
+        height: 30px;
+        border: 1px solid black;
+        border-radius: 10px;
+        user-select: none;
+        display: none;
+        opacity: 0;
+        transition: opacity 2s ease-in; /*Não funciona aparentemente*/
+
+        a {
+            float: left;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 50%;
+            padding-top: 3px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            background-color: rgb(253, 174, 78);
+
+            font-size: 15px;
+
+            text-align: center;
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            transition: ease-in 0.1s;
+            background-color: rgb(192, 132, 58);
+        }
+
+        form {
+            float: right;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 50%;
+
+            input {
+                float: right;
+                padding: 0;
+                display: block;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+                background-color: rgb(253, 174, 78);
+                border: none;
+                border-left: 1px solid black;
+                font-size: 15px;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+            }
+            input:hover {
+                transition: ease-in 0.1s;
+                background-color: rgb(192, 132, 58);
+            }
+        }
     }
 }
 

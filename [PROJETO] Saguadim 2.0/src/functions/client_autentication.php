@@ -9,10 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $senha = $_POST['senha'];
     
     // Query para validar se o cliente existe
-    $sql = "SELECT COUNT(usu_id) FROM usuarios 
-        WHERE usu_email = '$email' 
-        AND usu_senha = '$senha' 
-        AND usu_status = 's'";
+    $sql = "SELECT COUNT(cli_id) FROM clientes 
+        WHERE cli_email = '$email' 
+        AND cli_senha = '$senha' 
+        AND cli_status = 's'";
     $retorno = mysqli_query($link, $sql);
     
     // Registra o log da operação MySQL
@@ -30,10 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo("0");
     }
     else{
-        $sql = "SELECT * FROM usuarios 
-        WHERE usu_email = '$email'
-        AND usu_senha = '$senha'
-        AND usu_status = 's'";
+        $sql = "SELECT * FROM clientes 
+        WHERE cli_email = '$email'
+        AND cli_senha = '$senha'
+        AND cli_status = 's'";
         $retorno = mysqli_query($link, $sql);
     
         // Registra o log da operação MySQL
@@ -43,9 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         mysqli_query($link, $sqllog);
         
         session_set_cookie_params(60 * 60 * 24 * 30); // Define a duração da sessão para 30 dias
-        session_start(); // Inicia a sessão
+        session_start();
     
         while ($tbl = mysqli_fetch_array($retorno)){
+            $_SESSION['tiposessao'] = 'client';
             $_SESSION['idusuario'] = $tbl[0];
             $_SESSION['nomeusuario'] = $tbl[1];
         }
@@ -53,5 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo("1");
     }
 }
+
+exit();
 
 ?>

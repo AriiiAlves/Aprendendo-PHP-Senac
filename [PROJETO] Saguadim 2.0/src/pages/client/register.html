@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar-se no Saguadim</title>
+    <link rel="stylesheet" href="../../../styles/register.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="../../../public/photos/saguadim_logo.png">
+            <p>
+                A melhor salgaderia.<br>Na palma da sua mão.
+            </p>
+        </div>
+        <div class="login">
+            <div>
+                <h3>Criar uma conta</h3>
+                <input type="text" name="nome" id="nome" placeholder="Nome completo" required>
+                <input type="email" name="email" id="email" placeholder="Email" required>
+                <input type="password" name="senha" id="senha" placeholder="Nova senha" required>
+                <input type="password" name="senha2" id="senha2" placeholder="Repita a senha" required>
+                <input type="tel" name="celular" id="celular" placeholder="Celular" minlength="15" maxlength="15" required>
+                <input type="email" name="cpf" id="cpf" placeholder="CPF" minlength="14" maxlength="14" required>
+                <input type="text" name="curso" id="curso" placeholder="Curso atual (Senac)" required>
+                <input type="number" name="sala" id="sala" placeholder="Número da sala" step="1" min="1" max="99" required>
+                <span id="error"></span>
+                <button value="Entrar" onclick="submitForm()">Cadastrar</button>
+            </div>
+            <span>
+                Já possui uma conta? <a href="login.html" class="toggle-form" id="toggleCadastra">Clique aqui</a>
+            </span>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.1.0/vanilla-masker.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var cellphoneInput = document.getElementById('celular');
+        var cpfInput = document.getElementById('cpf');
+        var salaInput = document.getElementById('sala');
+        VMasker(cellphoneInput).maskPattern('(99) 99999-9999');
+        VMasker(cpfInput).maskPattern('999.999.999-99');
+        VMasker(salaInput).maskPattern('99');
+    });
+</script>
+
+<!--Script AJAX que envia os dados de cadastro para o arquivo PHP, e o PHP retorna uma resposta-->
+<script>
+    function submitForm() {
+        var nome = document.getElementById('nome').value;
+        var email = document.getElementById('email').value;
+        var senha = document.getElementById('senha').value;
+        var senha2 = document.getElementById('senha2').value;
+        var telefone = document.getElementById('celular').value;
+        var cpf = document.getElementById('cpf').value;
+        var curso = document.getElementById('curso').value;
+        var sala = document.getElementById('sala').value;
+    
+        if (senha === senha2) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '../../functions/client_register.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            
+            // Callback a ser executado quando a resposta do servidor for recebida
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                    console.log(typeof(xhr.responseText));
+                    var response = xhr.responseText;
+                    
+                    // Se a resposta for "0", mostra a mensagem de erro
+                    if(response === "0") {
+                        document.getElementById('error').innerHTML = 'O usuário já existe';
+                        document.getElementById('error').style.display = 'block';
+                    }
+                    // Se a resposta for "1", redireciona para a home
+                    else if (response === "1") {
+                        window.alert("Cadastro realizado com sucesso!")
+                        window.location = "login.html";
+                    }
+                }
+            };
+        
+            // Converte os dados para a notação de URL
+            var params = `nome=${nome}&email=${email}&senha=${senha}&telefone=${telefone}&cpf=${cpf}&curso=${curso}&sala=${sala}`;
+            
+            xhr.send(params);
+        }
+        else {
+            document.getElementById('error').innerHTML = 'Senhas não conferem!';
+            document.getElementById('error').style.display = 'block';
+        }
+        
+    }
+</script>

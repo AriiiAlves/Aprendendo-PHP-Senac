@@ -11,7 +11,7 @@
         <div class="logo">
             <img src="../../../public/photos/saguadim_logo.png">
             <p>
-                A plataforma ideal para o gerenciamento da sua salgaderia.
+                A melhor salgaderia.<br>Na palma da sua mão.
             </p>
         </div>
         <div class="login">
@@ -22,12 +22,13 @@
                 <button value="Entrar" onclick="submitForm()">Entrar</button>
             </div>
             <span>
-                Esqueceu sua senha? <a href="#" class="toggle-form" id="toggleCadastra">Clique aqui</a>
+                Não tem conta? <a href="register.html" class="toggle-form" id="toggleCadastra">Clique aqui</a>
             </span>
         </div>
     </div>
 </body>
 </html>
+  
 
 <!--Script AJAX que envia os dados de login para o arquivo PHP, e o PHP retorna uma resposta-->
 <script>
@@ -36,7 +37,7 @@
         var senha = document.getElementById('senha').value;
     
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '../../functions/admin_autentication.php', true);
+        xhr.open('POST', '../../functions/client_autentication.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         
         // Callback a ser executado quando a resposta do servidor for recebida
@@ -49,8 +50,6 @@
                 // Se a resposta for "0", mostra a mensagem de erro
                 if(response === "0") {
                     document.getElementById('error').style.display = 'block';
-
-                    local
                 }
                 // Se a resposta for "1", redireciona para a home
                 else if (response === "1") {

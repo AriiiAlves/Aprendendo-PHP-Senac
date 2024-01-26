@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrar no Saguadim</title>
-    <link rel="stylesheet" href="../../../styles/login.css">
+    <title>Cadastrar-se no Saguadim</title>
+    <link rel="stylesheet" href="../../../styles/register.css">
 </head>
 <body>
     <div class="container">
@@ -16,28 +16,41 @@
         </div>
         <div class="login">
             <div>
+                <h3>Criar uma conta</h3>
+                <input type="text" name="nome" id="nome" placeholder="Nome completo" required>
                 <input type="email" name="email" id="email" placeholder="Email" required>
-                <input type="password" name="senha" id="senha" placeholder="Senha" required>
-                <span id="error">Senha ou usuário não correspondem</span>
+                <input type="password" name="senha" id="senha" placeholder="Nova senha" required>
+                <input type="password" name="senha2" id="senha2" placeholder="Repita a senha" required>
+                <span id="error">O usuário já está cadastrado.</span>
                 <button value="Entrar" onclick="submitForm()">Entrar</button>
             </div>
             <span>
-                Não tem conta? <a href="#" class="toggle-form" id="toggleCadastra">Clique aqui</a>
+                Já possui uma conta? <a href="login.html" class="toggle-form" id="toggleCadastra">Clique aqui</a>
             </span>
         </div>
     </div>
 </body>
 </html>
-  
 
-<!--Script AJAX que envia os dados de login para o arquivo PHP, e o PHP retorna uma resposta-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.1.0/vanilla-masker.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var cellphoneInput = document.getElementById('celular');
+        var cpfInput = document.getElementById('cpf');
+        VMasker(cellphoneInput).maskPattern('(99) 99999-9999');
+        VMasker(cpfInput).maskPattern('999.999.999-99');
+    });
+</script>
+
+<!--Script AJAX que envia os dados de cadastro para o arquivo PHP, e o PHP retorna uma resposta-->
 <script>
     function submitForm() {
+        var login = document.getElementById('nome').value;
         var email = document.getElementById('email').value;
         var senha = document.getElementById('senha').value;
     
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '../../functions/user_autentication.php', true);
+        xhr.open('POST', '../../functions/admin_register.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         
         // Callback a ser executado quando a resposta do servidor for recebida
@@ -50,18 +63,17 @@
                 // Se a resposta for "0", mostra a mensagem de erro
                 if(response === "0") {
                     document.getElementById('error').style.display = 'block';
-
-                    local
                 }
                 // Se a resposta for "1", redireciona para a home
                 else if (response === "1") {
-                    window.location = "home.html";
+                    window.alert("Cadastro realizado com sucesso!")
+                    window.location = "login.html";
                 }
             }
         };
     
         // Converte os dados para a notação de URL
-        var params = 'email=' + email + '&senha=' + senha;
+        var params = 'login=' + login + '&email=' + email + '&senha=' + senha;
         
         xhr.send(params);
     }

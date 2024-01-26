@@ -1,9 +1,15 @@
+<?php
+
+include('../../functions/session_validation.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar-se no Saguadim</title>
+    <title>Saguadim</title>
 </head>
 <body>
     
