@@ -11,7 +11,7 @@ if (isset($_POST['sair'])) {
 
     // Redireciona para o index.php
     header("Location: /%5bPROJETO%5d%20Saguadim%202.0/index.php");
-    exit(); // Certifique-se de encerrar o script após o redirecionamento
+    exit();
 }
 ?>
 

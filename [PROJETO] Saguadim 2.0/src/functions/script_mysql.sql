@@ -5,7 +5,7 @@ USE saguadim;
 -- Criação da tabela de usuários
 CREATE TABLE IF NOT EXISTS usuarios(
     usu_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    usu_login VARCHAR(20) NOT NULL,
+    usu_login VARCHAR(50) NOT NULL,
     usu_senha VARCHAR(50) NOT NULL,
     usu_status CHAR(1),
     usu_key VARCHAR(10),
