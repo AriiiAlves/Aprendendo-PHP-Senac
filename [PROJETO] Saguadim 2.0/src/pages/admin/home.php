@@ -29,18 +29,18 @@ if (isset($_POST['sair'])) {
         <div class="ul_container">
             <h2>Cadastro</h2>
             <ul>
-                <li><a href="#">Usuário</a></li> 
-                <li><a href="#">Cliente</a></li>
-                <li><a href="#">Produto</a></li>
-                <li><a href="#">Fornecedor</a></li>
+                <li><a href="cadastro/user.php">Usuário</a></li> 
+                <li><a href="cadastro/client.php">Cliente</a></li>
+                <li><a href="cadastro/product.php">Produto</a></li>
+                <li><a href="cadastro/supplier.php">Fornecedor</a></li>
                 
             </ul>
             <h2>Lista</h2>
             <ul>
-                <li><a href="#">Usuário</a></li> 
-                <li><a href="#">Cliente</a></li>
-                <li><a href="#">Produto</a></li>
-                <li><a href="#">Fornecedor</a></li>
+                <li><a href="lista/user.php">Usuário</a></li> 
+                <li><a href="lista/client.php">Cliente</a></li>
+                <li><a href="lista/product.php">Produto</a></li>
+                <li><a href="lista/supplier.php">Fornecedor</a></li>
             </ul>
         </div>
         <div class="profile" id="profile">
