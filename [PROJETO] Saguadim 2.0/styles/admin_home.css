@@ -34,6 +34,10 @@ nav h2 {
   margin: 0;
   padding: 15px 0 15px 15px;
 }
+nav .ul_container {
+  overflow-y: auto;
+  height: calc(100% - 150px);
+}
 nav ul {
   list-style-type: none;
   margin: 0;
@@ -76,8 +80,13 @@ nav .profile img {
 nav .profile span {
   display: inline-block;
   margin-top: 12px;
+  height: 100%;
+  width: 105px;
   text-decoration: none;
   color: black;
+  white-space: nowrap; /*Tira a quebra de linha*/
+  overflow: hidden;
+  text-overflow: ellipsis; /*Coloca "..." em texto que sobressair o limite de espaço*/
 }
 nav .profile:hover {
   transition: ease-in 0.1s;

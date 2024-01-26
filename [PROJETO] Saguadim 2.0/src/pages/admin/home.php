@@ -26,23 +26,24 @@ if (isset($_POST['sair'])) {
 <body>
     <nav>
         <img src="../../../public/photos/saguadim_logo.png">
-        <h2>Cadastro</h2>
-        <ul>
-            <li><a href="#">Usuário</a></li> 
-            <li><a href="#">Cliente</a></li>
-            <li><a href="#">Produto</a></li>
-            <li><a href="#">Fornecedor</a></li>
-            
-        </ul>
-        <h2>Lista</h2>
-        <ul>
-            <li><a href="#">Usuário</a></li> 
-            <li><a href="#">Cliente</a></li>
-            <li><a href="#">Produto</a></li>
-            <li><a href="#">Fornecedor</a></li>
-        </ul>
+        <div class="ul_container">
+            <h2>Cadastro</h2>
+            <ul>
+                <li><a href="#">Usuário</a></li> 
+                <li><a href="#">Cliente</a></li>
+                <li><a href="#">Produto</a></li>
+                <li><a href="#">Fornecedor</a></li>
+                
+            </ul>
+            <h2>Lista</h2>
+            <ul>
+                <li><a href="#">Usuário</a></li> 
+                <li><a href="#">Cliente</a></li>
+                <li><a href="#">Produto</a></li>
+                <li><a href="#">Fornecedor</a></li>
+            </ul>
+        </div>
         <div class="profile" id="profile">
-            
                 <img src="../../../public/photos/avatar.png">
                 <span><?=$_SESSION['nomeusuario']?></span>
         </div>
