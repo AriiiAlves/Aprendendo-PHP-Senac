@@ -17,6 +17,7 @@ main div {
   border: 1px solid rgb(88, 88, 88);
   border-radius: 10px;
   box-shadow: 5px 5px;
+  overflow-x: auto;
 }
 main div table {
   width: 100%;
@@ -35,4 +36,30 @@ main div table th {
 }
 main div table tr:nth-child(even) {
   background-color: rgba(219, 219, 219, 0.6901960784);
+}
+main div a, main div button {
+  display: block;
+  margin: auto;
+  width: 70px;
+  padding: 5px 5px;
+  background-color: #04AA6D;
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  text-align: center;
+}
+main div a:hover {
+  transition: ease-in 0.3s;
+  background-color: #048354;
+}
+main div button {
+  background-color: tomato;
+  margin-top: 5px;
+}
+main div button:hover {
+  cursor: pointer;
+  transition: ease-in 0.3s;
+  background-color: rgb(196, 76, 54);
 }/*# sourceMappingURL=admin_list.css.map */

@@ -1,6 +1,6 @@
 <?php
 
-include('../../../functions/session_validation.php');
+include('../../../functions/session_validation_user.php');
 include('../../../functions/conectadb.php');
 
 if (isset($_POST['sair'])) {

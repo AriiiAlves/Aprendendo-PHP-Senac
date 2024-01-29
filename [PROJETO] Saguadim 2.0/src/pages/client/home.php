@@ -1,6 +1,6 @@
 <?php
 
-include('../../functions/session_validation.php');
+include('../../functions/session_validation_client.php');
 
 ?>
 

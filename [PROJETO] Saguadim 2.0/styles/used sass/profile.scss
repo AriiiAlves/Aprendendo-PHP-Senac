@@ -1,0 +1,102 @@
+main {
+    .container {
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        width: 550px;
+        height: 400px;
+        margin: 15vh auto 20px auto;
+        padding: 20px;
+        align-items: center;
+
+        border: 1px solid rgb(88, 88, 88);
+        border-radius: 10px;
+
+        box-shadow: 5px 5px;
+
+        .divider {
+            flex: 0.5;
+            padding: 15px;
+
+            .photo {
+                img {
+                    display: block;
+                    margin: auto;
+                    width: 100px;
+                    background-color: gray;
+                    border-radius: 10px;
+                    border: solid rgb(253, 174, 78) 1px;
+                }
+    
+                p {
+                    display: block;
+                    text-align: center;
+                    font-size: 18px;
+                    color: rgb(253, 174, 78);
+                }
+            }
+    
+            .info, .password {
+                label {
+                    display: block;
+                    text-align: left;
+                    font-size: 15px;
+                    user-select: none;
+                }
+                input {
+                    display: block;
+                    text-align: left;
+                    width:100%;
+                    height: 40px;
+                    margin-top: 1px;
+                    margin-bottom: 5px;
+        
+                    border: solid black 1px;
+                    border-radius: 5px;
+                    outline: none;
+        
+                    padding-left: 15px;
+                }
+        
+                input:focus {
+                    border: solid rgb(253, 174, 78) 1px;
+                }
+            }
+    
+            .password {
+                display: block;
+                
+                span {
+                    font-size: 17px;
+                }
+
+                button {
+                    width: 100%;
+                    height: 40px;
+                    border-radius: 5px;
+                    text-align: center;
+                    margin: auto;
+                    margin-top: 5px;
+                    color: white;
+                    font-size: 15px;
+                    background-color: rgb(253, 174, 78);
+                    border: none;
+                    padding: none;
+                }
+        
+                button:hover {
+                    cursor: pointer;
+                    transition: ease-in 0.3s;
+                    background-color: rgb(199, 134, 54);
+                }
+
+                #error {
+                    display: none;
+                    text-align: center;
+                    color: red;
+                    margin-bottom: 1px;
+                    font-size: 15px;
+                }
+            }
+        }        
+    }
+}

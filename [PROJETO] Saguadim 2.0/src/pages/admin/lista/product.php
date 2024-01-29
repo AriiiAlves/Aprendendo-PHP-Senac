@@ -1,7 +1,7 @@
 <?php
 
 include('../../../functions/conectadb.php');
-include('../../../functions/session_validation.php');
+include('../../../functions/session_validation_user.php');
 
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
@@ -21,7 +21,7 @@ if (isset($_POST['sair'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saguadim</title>
+    <title>Lista de produtos</title>
     <link rel="stylesheet" href="../../../../styles/admin_home.css">
     <link rel="stylesheet" href="../../../../styles/admin_list.css">
 </head>
@@ -50,7 +50,7 @@ if (isset($_POST['sair'])) {
                 <span><?=$_SESSION['nomeusuario']?></span>
         </div>
         <div class="details" id="details">
-            <a href="profile.php?id=<?=$_SESSION['idusuario']?>">Perfil</a>
+            <a href="../profile.php?id=<?=$_SESSION['idusuario']?>">Perfil</a>
             <form method="post" action="">
                 <input type="submit" name="sair" value="Sair">
             </form>
@@ -67,9 +67,10 @@ if (isset($_POST['sair'])) {
                 <th>Validade</th>
                 <th>Fornecedor</th>
                 <th>Status</th>
+                <th></th>
                 <?php
                             
-                    $sql = "SELECT pro_nome, pro_descricao, pro_custo, pro_preco, pro_quantidade, pro_validade, fk_fornecedor_id, pro_status FROM produtos";
+                    $sql = "SELECT pro_nome, pro_descricao, pro_custo, pro_preco, pro_quantidade, pro_validade, fk_fornecedor_id, pro_status, pro_id FROM produtos";
                     $retorno = mysqli_query($link, $sql);
 
                     while($tbl = mysqli_fetch_array($retorno)){
@@ -83,12 +84,16 @@ if (isset($_POST['sair'])) {
                             <td><?= $tbl[5] ?></td>
                             <?php
                         
-                            $sql = "SELECT fornecedor_nome FROM fornecedores WHERE fornecedor_id = $tbl[6]";
+                            $sql = "SELECT fornecedor_nome, fornecedor_id FROM fornecedores WHERE fornecedor_id = $tbl[6]";
                             $fornecedor = mysqli_fetch_array(mysqli_query($link, $sql))[0];
 
                             ?>
                             <td><?= $fornecedor ?></td>
-                            <td <?= $tbl[7] == 's'?"style='color: green'":"style='color: red'" ?>><?= $tbl[2] == 's'?"Ativo":"Inativo" ?></td>
+                            <td <?= $tbl[7] == 's'?"style='color: green'":"style='color: red'" ?>><?= $tbl[7] == 's'?"Ativo":"Inativo" ?></td>
+                            <td>
+                                <a href="alterar/change_product.php?id=<?= $tbl[8] ?>">Editar</a>
+                                <button onclick="deleteData(<?= $tbl[8] ?>)">Deletar</button>
+                            </td>
                         </tr>
                 <?php
                     }
@@ -121,4 +126,33 @@ if (isset($_POST['sair'])) {
             details.style.opacity = 1;
         });
     });
+
+    // Script AJAX que tenta excluir um produto e retorna uma resposta
+    function deleteData(pro_id) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '../../../functions/delete_data.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        
+        // Callback a ser executado quando a resposta do servidor for recebida
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = xhr.responseText;
+                console.log(response);
+                // Se a resposta for "0", exibe um erro
+                if(response === "0") {
+                    window.alert("Ocorreu um erro.")
+                }
+                // Se a resposta for "1", mostra uma mensagem de sucesso
+                else if (response === "1") {
+                    window.alert("Produto excluído com sucesso.")
+                    window.location.reload();
+                }
+            }
+        }
+
+        // Converte os dados para a notação de URL
+        var params = `pro_id=${pro_id}`;
+            
+        xhr.send(params);
+    }
 </script>

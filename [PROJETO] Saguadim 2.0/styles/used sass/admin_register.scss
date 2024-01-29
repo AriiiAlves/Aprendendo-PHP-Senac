@@ -36,7 +36,7 @@ main {
             padding-left: 15px;
         }
 
-        input:focus {
+        input:focus, textarea:focus {
             border: solid rgb(253, 174, 78) 1px;
         }
 
@@ -68,8 +68,49 @@ main {
         }
     }
 
+    .edit_client, .edit_supplier, .edit_product, .edit_user {
+        label {
+            display: block;
+            text-align: left;
+            font-size: 15px;
+        }
+
+        input {
+            margin-top: 1px;
+            margin-bottom: 7px;
+        }
+
+        div {
+            input[type="radio"] {
+                display: inline-block;
+                text-align: left;
+                padding: 0;
+                width: auto;
+                height: 15px;
+            }
+
+            .radio {
+                display: inline-block;
+                width: auto;
+                height: auto;
+            }
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    }
+
+    .edit_user {
+        height: 475px;
+    }
+
     .client {
         height: 620px;
+    }
+
+    .edit_client {
+        height: 825px;
     }
 
     .product {
@@ -82,7 +123,25 @@ main {
         }
     }
 
+    .edit_product {
+        height: 750px;
+
+        div {
+            textarea {
+                height: 70px;
+                padding: 15px;
+                resize: none;
+                margin-top: 1px;
+                margin-bottom: 7px;
+            }
+        }
+    }
+
     .supplier {
         height: 200px;
+    }
+
+    .edit_supplier {
+        height: 225px;
     }
 }

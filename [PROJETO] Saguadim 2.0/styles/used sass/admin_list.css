@@ -1,0 +1,38 @@
+nav .selected {
+  background-color: rgb(253, 174, 78);
+}
+
+main {
+  overflow-y: auto;
+  padding: 0 10px;
+}
+main div {
+  margin: 10vh auto 50px auto;
+  background-color: rgb(255, 255, 255);
+  width: 80%;
+  min-width: 355px;
+  height: auto;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid rgb(88, 88, 88);
+  border-radius: 10px;
+  box-shadow: 5px 5px;
+}
+main div table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+main div table th, main div table td {
+  border: 1px solid rgb(189, 189, 189);
+  padding: 10px;
+}
+main div table th {
+  padding: 12px 8px;
+  background-color: #04AA6D;
+  color: white;
+}
+main div table tr:nth-child(even) {
+  background-color: rgba(219, 219, 219, 0.6901960784);
+}/*# sourceMappingURL=admin_list.css.map */

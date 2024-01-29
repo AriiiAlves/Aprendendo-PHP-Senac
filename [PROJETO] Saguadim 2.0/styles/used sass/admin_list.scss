@@ -20,7 +20,8 @@ main {
         border: 1px solid rgb(88, 88, 88);
         border-radius: 10px;
         box-shadow: 5px 5px;
-    
+        overflow-x: auto;
+
         table {
             width: 100%;
             text-align: left;
@@ -41,17 +42,35 @@ main {
             tr:nth-child(even) {
                 background-color: #dbdbdbb0;}
             }
+
+            a, button {
+                display: block;
+                margin: auto;
+                width: 70px;
+                padding: 5px 5px;
+                background-color: #04AA6D;
+                text-decoration: none;
+                color: white;
+                border-radius: 10px;
+                border: none;
+                font-size: 15px;
+                text-align: center;
+            }
+
+            a:hover {
+                transition: ease-in 0.3s;
+                background-color: #048354;
+            }
+
+            button {
+                background-color: tomato;
+                margin-top: 5px;
+            }
+
+            button:hover {
+                cursor: pointer;
+                transition: ease-in 0.3s;
+                background-color: rgb(196, 76, 54);
+            }
         }
-
-    .user {
-    }
-
-    .client {
-    }
-
-    .product {
-    }
-
-    .supplier {
-    }
 }

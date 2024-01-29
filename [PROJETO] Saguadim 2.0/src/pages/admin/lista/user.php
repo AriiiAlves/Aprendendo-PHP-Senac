@@ -1,7 +1,7 @@
 <?php
 
 include('../../../functions/conectadb.php');
-include('../../../functions/session_validation.php');
+include('../../../functions/session_validation_user.php');
 
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
@@ -21,7 +21,7 @@ if (isset($_POST['sair'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saguadim</title>
+    <title>Lista de usuários</title>
     <link rel="stylesheet" href="../../../../styles/admin_home.css">
     <link rel="stylesheet" href="../../../../styles/admin_list.css">
 </head>
@@ -50,7 +50,7 @@ if (isset($_POST['sair'])) {
                 <span><?=$_SESSION['nomeusuario']?></span>
         </div>
         <div class="details" id="details">
-            <a href="profile.php?id=<?=$_SESSION['idusuario']?>">Perfil</a>
+            <a href="../profile.php?id=<?=$_SESSION['idusuario']?>">Perfil</a>
             <form method="post" action="">
                 <input type="submit" name="sair" value="Sair">
             </form>
@@ -62,9 +62,10 @@ if (isset($_POST['sair'])) {
                 <th>Login</th>
                 <th>Email</th>
                 <th>Status</th>
+                <th></th>
                 <?php
                             
-                    $sql = "SELECT usu_login, usu_email, usu_status FROM usuarios";
+                    $sql = "SELECT usu_login, usu_email, usu_status, usu_id FROM usuarios";
                     $retorno = mysqli_query($link, $sql);
 
                     while($tbl = mysqli_fetch_array($retorno)){
@@ -73,6 +74,10 @@ if (isset($_POST['sair'])) {
                             <td><?= $tbl[0] ?></td>
                             <td><?= $tbl[1] ?></td>
                             <td <?= $tbl[2] == 's'?"style='color: green'":"style='color: red'" ?>><?= $tbl[2] == 's'?"Ativo":"Inativo" ?></td>
+                            <td>
+                                <a href="alterar/change_user.php?id=<?= $tbl[3] ?>">Editar</a>
+                                <button onclick="deleteData(<?= $tbl[3] ?>)">Deletar</button>
+                            </td>
                         </tr>
                 <?php
                     }
@@ -105,4 +110,33 @@ if (isset($_POST['sair'])) {
             details.style.opacity = 1;
         });
     });
+
+    // Script AJAX que tenta excluir um usuário e retorna uma resposta
+    function deleteData(usu_id) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '../../../functions/delete_data.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        
+        // Callback a ser executado quando a resposta do servidor for recebida
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = xhr.responseText;
+                console.log(response);
+                // Se a resposta for "0", exibe um erro
+                if(response === "0") {
+                    window.alert("Ocorreu um erro.")
+                }
+                // Se a resposta for "1", mostra uma mensagem de sucesso
+                else if (response === "1") {
+                    window.alert("Usuário excluído com sucesso.")
+                    window.location.reload();
+                }
+            }
+        }
+
+        // Converte os dados para a notação de URL
+        var params = `usu_id=${usu_id}`;
+            
+        xhr.send(params);
+    }
 </script>

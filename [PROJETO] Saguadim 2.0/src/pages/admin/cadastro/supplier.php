@@ -1,6 +1,6 @@
 <?php
 
-include('../../../functions/session_validation.php');
+include('../../../functions/session_validation_user.php');
 
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
@@ -20,7 +20,7 @@ if (isset($_POST['sair'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Fornecedor</title>
+    <title>Cadastrar fornecedor</title>
     <link rel="stylesheet" href="../../../../styles/admin_home.css">
     <link rel="stylesheet" href="../../../../styles/admin_register.css">
 </head>
@@ -49,7 +49,7 @@ if (isset($_POST['sair'])) {
                 <span><?=$_SESSION['nomeusuario']?></span>
         </div>
         <div class="details" id="details">
-            <a href="profile.php?id=<?=$_SESSION['idusuario']?>">Perfil</a>
+            <a href="../profile.php?id=<?=$_SESSION['idusuario']?>">Perfil</a>
             <form method="post" action="">
                 <input type="submit" name="sair" value="Sair">
             </form>
