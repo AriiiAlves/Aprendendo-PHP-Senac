@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: rgb(253, 174, 78);
+}
+
+.profile_box {
+  margin-bottom: 10px;
+}
+
+nav {
+  display: block;
+  margin: auto;
+}
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+nav ul li {
+  display: inline-block;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+nav ul li a {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+nav ul li:nth-child(1) {
+  background-color: rgb(34, 174, 255);
+}
+nav ul li:nth-child(2) {
+  background-color: rgb(197, 151, 120);
+}
+nav ul li:nth-child(3) {
+  background-color: rgb(225, 154, 253);
+}
+nav ul li:nth-child(4) {
+  background-color: rgb(108, 253, 217);
+}
+.container {
+  display: block;
+  background-color: rgb(255, 255, 255);
+  width: 550px;
+  height: 750px;
+  margin: 0 auto 50px auto;
+  padding: 20px;
+  align-items: center;
+  border: 1px solid rgb(88, 88, 88);
+  border-radius: 10px;
+  box-shadow: 5px 5px;
+}
+.container .divider {
+  display: flex;
+}
+.container .divider .divider_in {
+  flex: 0.5;
+  padding: 10px;
+}
+.container .divider .divider_in .photo img {
+  display: block;
+  margin: auto;
+  width: 100px;
+  background-color: gray;
+  border-radius: 10px;
+  border: solid rgb(253, 174, 78) 1px;
+}
+.container .divider .divider_in .photo p {
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: rgb(253, 174, 78);
+}
+.container .divider .divider_in .info label {
+  display: block;
+  text-align: left;
+  font-size: 15px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.container .divider .divider_in .info input {
+  display: block;
+  text-align: left;
+  width: 100%;
+  height: 40px;
+  margin-top: 1px;
+  margin-bottom: 5px;
+  border: solid black 1px;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 15px;
+}
+.container .divider .divider_in .info input:focus {
+  border: solid rgb(253, 174, 78) 1px;
+}
+.container .password {
+  display: block;
+  padding: 10px;
+}
+.container .password label {
+  display: block;
+  text-align: left;
+  font-size: 15px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.container .password input {
+  display: block;
+  text-align: left;
+  width: 100%;
+  height: 40px;
+  margin-top: 1px;
+  margin-bottom: 5px;
+  border: solid black 1px;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 15px;
+}
+.container .password input:focus {
+  border: solid rgb(253, 174, 78) 1px;
+}
+.container .password span {
+  font-size: 17px;
+}
+.container .password button {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  text-align: center;
+  margin: auto;
+  margin-top: 5px;
+  color: white;
+  font-size: 15px;
+  background-color: rgb(253, 174, 78);
+  border: none;
+  padding: none;
+}
+.container .password button:hover {
+  cursor: pointer;
+  transition: ease-in 0.3s;
+  background-color: rgb(199, 134, 54);
+}
+.container .password #error {
+  display: none;
+  text-align: center;
+  color: red;
+  margin-bottom: 1px;
+  font-size: 15px;
+}/*# sourceMappingURL=profile_client.css.map */

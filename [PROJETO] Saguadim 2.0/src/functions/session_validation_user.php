@@ -7,7 +7,7 @@ if (session_status() != PHP_SESSION_ACTIVE or empty(session_id()) or empty($_SES
 }
 else {
     if ($_SESSION['tiposessao'] != 'user') {
-        header("Location: /%5bPROJETO%5d%20Saguadim%202.0/src/pages/client/login.html");
+        header("Location: /%5bPROJETO%5d%20Saguadim%202.0/src/pages/admin/login.html");
     }
 }
 

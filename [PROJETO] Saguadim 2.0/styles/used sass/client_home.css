@@ -1,0 +1,204 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: rgb(253, 174, 78);
+}
+
+.profile_box {
+  margin: 15vh auto 25px auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.profile {
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  margin-right: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.profile img {
+  width: 35px;
+  background-color: rgb(107, 107, 107);
+  float: left;
+  margin: 6px 10px 0 10px;
+  border-radius: 10px;
+}
+.profile span {
+  display: block;
+  margin: 14px 5px 0 0;
+  height: 1rem;
+  width: 130px;
+  text-align: left;
+  text-decoration: none;
+  color: black;
+  white-space: nowrap; /*Tira a quebra de linha*/
+  overflow: hidden;
+  text-overflow: ellipsis; /*Coloca "..." em texto que sobressair o limite de espaço*/
+}
+
+.profile:hover {
+  transition: ease-in 0.1s;
+  background-color: rgb(255, 230, 131);
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.details {
+  display: none;
+  position: relative;
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.details a {
+  float: left;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 50%;
+  padding-top: 15px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: white;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+.details a:hover {
+  transition: ease-in 0.1s;
+  background-color: rgb(255, 230, 131);
+}
+.details form {
+  float: right;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 50%;
+}
+.details form input {
+  float: right;
+  padding: 0;
+  display: block;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: white;
+  border: none;
+  border-left: 1px solid black;
+  font-size: 15px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.details form input:hover {
+  transition: ease-in 0.1s;
+  background-color: rgb(255, 230, 131);
+}
+
+.cards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center;
+  margin-bottom: 50px;
+}
+.cards a {
+  transition: ease-in 0.2s;
+  display: inline-block;
+  color: black;
+  width: 200px;
+  height: 200px;
+  margin: 15px;
+  text-decoration: none;
+}
+.cards a div {
+  transition: ease-in 0.2s;
+  display: block;
+  width: 200px;
+  height: 200px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(88, 88, 88);
+  border-radius: 10px;
+  box-shadow: 5px 5px;
+  padding: 20px;
+}
+.cards a div img {
+  transition: ease-in 0.2s;
+  width: 100px;
+  display: block;
+  margin: auto;
+}
+.cards a div p {
+  transition: ease-in 0.2s;
+  display: block;
+  text-align: center;
+}
+.cards a:hover {
+  transition: ease-in 0.2s;
+  width: 210px;
+  height: 210px;
+  margin: 10px;
+}
+.cards a:hover div {
+  transition: ease-in 0.2s;
+  width: 215px;
+  height: 215px;
+  background-color: rgb(255, 230, 131);
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: rgb(255, 255, 255) 5px 5px;
+}
+.cards a:hover div img {
+  transition: ease-in 0.2s;
+  width: 110px;
+}
+.cards a:hover div p {
+  transition: ease-in 0.2s;
+  font-size: 18px;
+}
+
+.credits {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .profile_box {
+    margin-top: 10vh;
+  }
+  .cards {
+    flex-flow: column wrap;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .profile_box {
+    display: block;
+  }
+  .profile_box .profile {
+    display: block;
+    margin: auto;
+    margin-bottom: 5px;
+  }
+  .profile_box .details {
+    display: block;
+    margin: auto;
+  }
+}/*# sourceMappingURL=client_home.css.map */
