@@ -1,0 +1,168 @@
+.order_container {
+  display: block;
+  background-color: rgb(255, 255, 255);
+  width: 550px;
+  height: 750px;
+  margin: 0 auto 50px auto;
+  padding: 20px;
+  align-items: center;
+  border: 1px solid rgb(88, 88, 88);
+  border-radius: 10px;
+  box-shadow: 5px 5px;
+}
+.order_container .choose_new, .order_container .chosen, .order_container .end {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 20px 0 20px 0;
+}
+.order_container .choose_new h2, .order_container .chosen h2, .order_container .end h2 {
+  text-align: center;
+  font-size: 20px;
+  margin: 5px 0 10px 0;
+}
+.order_container .choose_new {
+  position: relative;
+  height: 275px;
+  display: flex;
+  justify-content: left;
+  overflow: hidden;
+}
+.order_container .choose_new h2 {
+  position: absolute;
+  width: 508px;
+  text-align: center;
+}
+.order_container .choose_new #left {
+  position: absolute;
+  left: 10px;
+  bottom: calc(50% - 25px);
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 50px;
+  z-index: 1;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.order_container .choose_new #left img {
+  padding: 3px;
+  margin: 0;
+  background-color: rgb(0, 255, 255);
+  height: 25px;
+  width: 25px;
+  border-radius: 50px;
+  transform: rotate(180deg);
+}
+.order_container .choose_new #right {
+  position: absolute;
+  right: 10px;
+  bottom: calc(50% - 25px);
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 50px;
+  z-index: 1;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.order_container .choose_new #right img {
+  padding: 3px;
+  margin: 0;
+  background-color: rgb(0, 255, 255);
+  height: 25px;
+  width: 25px;
+  border-radius: 50px;
+}
+.order_container .choose_new #left:hover, .order_container .choose_new #right:hover {
+  cursor: pointer;
+}
+.order_container .choose_new .product_card {
+  transition: ease-in-out 0.5s;
+  flex: 0 0 auto;
+  position: relative;
+  left: 0px;
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+  margin: 40px 10px 0 10px;
+}
+.order_container .choose_new .product_card .title_card, .order_container .choose_new .product_card .desc_card, .order_container .choose_new .product_card .price_card {
+  display: block;
+}
+.order_container .choose_new .product_card .title_card span, .order_container .choose_new .product_card .desc_card span, .order_container .choose_new .product_card .price_card span {
+  display: block;
+  text-align: center;
+}
+.order_container .choose_new .product_card .title_card {
+  margin-top: 10px;
+  height: auto;
+  max-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.order_container .choose_new .product_card .desc_card {
+  margin-top: 5px;
+  height: auto;
+  max-height: 40px;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.order_container .choose_new .product_card .price_card {
+  margin-top: 10px;
+}
+.order_container .choose_new .product_card .price_card span {
+  margin: auto;
+  width: 100px;
+  height: 30px;
+  padding: 5px;
+  font-size: 15px;
+  color: white;
+  border-radius: 50px;
+  background-color: rgb(41, 209, 111);
+}
+.order_container .choose_new .product_card .end_card {
+  position: absolute;
+  bottom: 10px;
+}
+.order_container .choose_new .product_card .end_card input {
+  display: inline-block;
+  margin-left: 11px;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  outline: none;
+  background-color: rgb(253, 174, 78);
+  color: white;
+}
+.order_container .choose_new .product_card .end_card input:focus {
+  border-color: rgb(253, 174, 78);
+}
+.order_container .choose_new .product_card .end_card button {
+  width: 120px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(253, 174, 78);
+  color: white;
+}
+.order_container .choose_new .product_card .end_card button:hover {
+  cursor: pointer;
+  transition: ease-in 0.3s;
+  background-color: rgb(199, 134, 54);
+}
+.order_container .chosen {
+  height: auto;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.order_container .end button {
+  display: block;
+  margin: auto;
+}/*# sourceMappingURL=order.css.map */

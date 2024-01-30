@@ -46,7 +46,9 @@ while($tbl = mysqli_fetch_array($retorno)) {
 <body>
     <div class="profile_box">
         <div class="home">
-            <a href="home.php">Home</a>
+            <a href="home.php">
+                <img src="../../../public/photos/house.png">
+            </a>
         </div>
         <div class="profile" id="profile">
             <img src="../../../public/photos/avatar.png">

@@ -59,7 +59,7 @@ body {
     margin-left: 10px;
     display: none;
     text-align: center;
-    width: 200px;
+    width: 150px;
     height: 50px;
     border: 1px solid black;
     border-radius: 10px;
@@ -144,6 +144,21 @@ body {
             border-radius: 10px;
             box-shadow: 5px 5px;
             padding: 20px;
+            position: relative;
+
+            span {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border: 1px solid black;
+                border-radius: 50px;
+                background-color: tomato;
+                top: -5px; 
+                right: -10px;
+                text-align: center;
+                font-size: 12px;
+                padding-top: 3px;
+            }
 
             img {
                 transition: ease-in 0.2s;

@@ -8,43 +8,34 @@ body {
 }
 
 .profile_box {
+  margin-top: 5vh;
   margin-bottom: 10px;
 }
-
-nav {
-  display: block;
-  margin: auto;
-}
-nav ul {
-  list-style-type: none;
-  padding: 0;
+.profile_box .home {
+  width: 200px;
+  height: 50px;
+  margin-right: 10px;
   text-align: center;
-}
-nav ul li {
-  display: inline-block;
-  margin: auto;
+  width: 200px;
+  height: 50px;
   border: 1px solid black;
   border-radius: 10px;
+  background-color: rgb(34, 174, 255);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
-nav ul li a {
+.profile_box .home a {
   display: block;
-  width: 100%;
-  padding: 10px;
+  margin: auto;
+  text-align: center;
+  padding-top: 15px;
+  width: 200px;
+  height: 50px;
   text-decoration: none;
   color: black;
 }
-nav ul li:nth-child(1) {
-  background-color: rgb(34, 174, 255);
-}
-nav ul li:nth-child(2) {
-  background-color: rgb(197, 151, 120);
-}
-nav ul li:nth-child(3) {
-  background-color: rgb(225, 154, 253);
-}
-nav ul li:nth-child(4) {
-  background-color: rgb(108, 253, 217);
-}
+
 .container {
   display: block;
   background-color: rgb(255, 255, 255);

@@ -1,6 +1,7 @@
 <?php
 
-include('../../functions/session_validation_client.php');
+include('../../../functions/conectadb.php');
+include('../../../functions/session_validation_client.php');
 
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
@@ -13,6 +14,7 @@ if (isset($_POST['sair'])) {
     header("Location: /%5bPROJETO%5d%20Saguadim%202.0/index.php");
     exit(); // Certifique-se de encerrar o script após o redirecionamento
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -21,12 +23,19 @@ if (isset($_POST['sair'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saguadim</title>
-    <link rel="stylesheet" href="../../../styles/client_home.css">
+    <link rel="stylesheet" href="../../../../styles/client_home.css">
+    <link rel="stylesheet" href="../../../../styles/profile_client.css">
+    <link rel="stylesheet" href="../../../../styles/requests_home.css">
 </head>
 <body>
     <div class="profile_box">
+        <div class="home">
+            <a href="../home.php">
+                <img src="../../../../public/photos/house.png">
+            </a>
+        </div>
         <div class="profile" id="profile">
-            <img src="../../../public/photos/avatar.png">
+            <img src="../../../../public/photos/avatar.png">
             <span><?=$_SESSION['nomeusuario']?></span>
         </div>
         <div class="details" id="details">
@@ -37,35 +46,26 @@ if (isset($_POST['sair'])) {
         </div>
     </div>
     <div class="cards">
-        <a href="encomendar/order.php">
-            <div>
-                <img src="../../../public/photos/drive-through.png">
-                <p>Encomendar</p>
-            </div>
-        </a>
-        <a href="pedidos/requests_home.php">
+        <a href="order.php">
             <div>
                 <span>5</span>
-                <img src="../../../public/photos/saco-de-papel.png">
-                <p>Pedidos</p>
+                <img src="../../../../public/photos/drive-through.png">
+                <p>Em preparo</p>
             </div>
         </a>
-        <a href="financeiro/payments.php">
+        <a href="requests.php">
             <div>
-                <img src="../../../public/photos/money-bag.png">
-                <p>Saldo e extrato</p>
+                <span>5</span>
+                <img src="../../../../public/photos/saco-de-papel.png">
+                <p>Aguardando retirada</p>
             </div>
         </a>
-    </div>
-    <div class="credits">
-        <p> 
-            Ícones feitos por 
-            <a href="https://www.flaticon.com/br/autores/berkahicon" title="berkahicon"> berkahicon, </a>
-            <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Good Ware, </a>
-            <a href="https://www.flaticon.com/br/icones-gratis/saco-de-papel" title="saco de papel ícones">Smashicons, </a> e
-            <a href="https://www.flaticon.com/br/icones-gratis/drive-through" title="drive-through ícones">Freepik</a>
-            de <a href="https://www.flaticon.com/br/" title="Flaticon">www.flaticon.com</a>
-        </p>
+        <a href="requests.php">
+            <div>
+                <img src="../../../../public/photos/saco-de-papel.png">
+                <p>Finalizados</p>
+            </div>
+        </a>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
