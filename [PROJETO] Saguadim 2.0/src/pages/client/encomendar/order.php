@@ -1,5 +1,6 @@
 <?php
 
+include('../../../functions/conectadb.php');
 include('../../../functions/session_validation_client.php');
 
 if (isset($_POST['sair'])) {
@@ -52,82 +53,43 @@ if (isset($_POST['sair'])) {
             <button id="right" onclick="rightClick()">
                 <img src="../../../../public/photos/arrow.png">
             </button>
+
+            <?php 
             
-            <div class="product_card">
-                <div class="title_card">
-                    <span>Título do produtoTítulo do produtoTítulo do produtoTítulo do produtoTítulo do produto</span>
+            $sql = "SELECT pro_id, pro_nome, pro_descricao, pro_preco, pro_quantidade, pro_status FROM produtos";
+            $retorno = mysqli_query($link, $sql);
+
+            while($tbl = mysqli_fetch_array($retorno)) {
+                $id = $tbl[0];
+                $nome = $tbl[1];
+                $descricao = $tbl[2];
+                $preco = $tbl[3];
+                $quantidade = $tbl[4];
+                $status = $tbl[5];
+
+                if ($status === 's') {
+            ?>
+
+                <div class="product_card">
+                    <div class="title_card">
+                        <span><?= $nome ?></span>
+                    </div>
+                    <div class="desc_card">
+                        <span><?= $descricao ?></span>
+                    </div>
+                    <div class="price_card">
+                        <span>R$ <?= number_format($preco, 2, ',') ?></span>
+                    </div>
+                    <div class="end_card">
+                        <input type="number" step="1" min="1" max="<?= $quantidade ?>" id="pro<?= $id ?>" value="0"></input>
+                        <button onclick="addProduct(<?= $id ?>)">Adicionar</button>
+                    </div>
                 </div>
-                <div class="desc_card">
-                    <span>Descrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortada</span>
-                </div>
-                <div class="price_card">
-                    <span>R$ 9,99</span>
-                </div>
-                <div class="end_card">
-                    <input type="number" step="1" min="1" max="100" value="0"></input>
-                    <button>Adicionar</button>
-                </div>
-            </div>
-            <div class="product_card">
-                <div class="title_card">
-                    <span>Título do produtoTítulo do produtoTítulo do produtoTítulo do produtoTítulo do produto</span>
-                </div>
-                <div class="desc_card">
-                    <span>Descrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortada</span>
-                </div>
-                <div class="price_card">
-                    <span>R$ 9,99</span>
-                </div>
-                <div class="end_card">
-                    <input type="number" step="1" min="1" max="100" value="0"></input>
-                    <button>Adicionar</button>
-                </div>
-            </div>
-            <div class="product_card">
-                <div class="title_card">
-                    <span>Título do produtoTítulo do produtoTítulo do produtoTítulo do produtoTítulo do produto</span>
-                </div>
-                <div class="desc_card">
-                    <span>Descrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortada</span>
-                </div>
-                <div class="price_card">
-                    <span>R$ 9,99</span>
-                </div>
-                <div class="end_card">
-                    <input type="number" step="1" min="1" max="100" value="0"></input>
-                    <button>Adicionar</button>
-                </div>
-            </div>
-            <div class="product_card">
-                <div class="title_card">
-                    <span>Título do produtoTítulo do produtoTítulo do produtoTítulo do produtoTítulo do produto</span>
-                </div>
-                <div class="desc_card">
-                    <span>Descrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortada</span>
-                </div>
-                <div class="price_card">
-                    <span>R$ 9,99</span>
-                </div>
-                <div class="end_card">
-                    <input type="number" step="1" min="1" max="100" value="0"></input>
-                    <button>Adicionar</button>
-                </div>
-            </div>
-            <div class="product_card">
-                <div class="title_card">
-                    <span>Título do produtoTítulo do produtoTítulo do produtoTítulo do produtoTítulo do produto</span>
-                </div>
-                <div class="desc_card">
-                    <span>Descrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortadaDescrição cortada</span>
-                </div>
-                <div class="price_card">
-                    <span>R$ 9,99</span>
-                </div>
-                <div class="end_card">
-                    <input type="number" step="1" min="1" max="100" value="0"></input>
-                    <button>Adicionar</button>
-                </div>
-            </div>
+
+            <?php
+                }
+            }
+            ?>
         </div>
         <div class="chosen">
             <h2>Produtos selecionados</h2>
@@ -136,12 +98,20 @@ if (isset($_POST['sair'])) {
                 <th>Quantidade</th>
                 <th>Preço unitário (R$)</th>
                 <th>Preço total (R$)</th>
+                <th></th>
                 <tr>
                     <td>Esfiha</td>
                     <td>5</td>
                     <td>5</td>
                     <td>25</td>
-                    <td><button>Excluir</button></td>
+                    <td><button onclick="alert('Elemento clicado!')">Excluir</button></td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>quantidade aqui</td>
+                    <td>-</td>
+                    <td>preço total aqui</td>
+                    <td><button>Oculto</button></td>
                 </tr>
             </table>
         </div>
@@ -151,10 +121,12 @@ if (isset($_POST['sair'])) {
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            let profile = document.getElementById("profile");
-            let details = document.getElementById("details");
-            let leftButton = document.getElementById("left");
-            let rightButton = document.getElementById("right");
+            var profile = document.getElementById("profile");
+            var details = document.getElementById("details");
+            var leftButton = document.getElementById("left");
+            var rightButton = document.getElementById("right");
+            var cards = document.querySelectorAll('.product_card');
+            var descCard = document.querySelectorAll('.desc_card');
 
             profile.addEventListener('click', function(event) {
                 event.stopPropagation();
@@ -172,6 +144,23 @@ if (isset($_POST['sair'])) {
                 details.style.display = 'none';
                 details.style.opacity = 1;
             });
+
+            if (cards.length <= 3) {
+                leftButton.style.display = 'none';
+                rightButton.style.display = 'none';
+            }
+
+
+            for (var i = 0; i < descCard.length; i++) { 
+                var descSpan = descCard[i].getElementsByTagName('span')[0];
+                if (descSpan.clientHeight > 58) {
+                    while (descSpan.clientHeight > 58) {
+                        descSpan.textContent = descSpan.textContent.slice(0, -1);
+                    }
+                    descSpan.textContent = descSpan.textContent.slice(0, -3);
+                    descSpan.textContent = descSpan.textContent + '...';
+                } 
+            }
         });
 
         function leftClick() {
@@ -214,15 +203,57 @@ if (isset($_POST['sair'])) {
                     leftValue = parseInt(leftValue.replace("px", ""));
                 }
 
-                if(cards[i].style.left === '0px' || cards[i].style.left === '') {
-                    cards[i].style.left = '-75px';
-                }
-                else if(leftValue > chooseNewSize + 805) {
+                // if(cards[i].style.left === '0px' || cards[i].style.left === '') {
+                //    cards[i].style.left = '-75px';
+                // }
+                if(leftValue > chooseNewSize + 805) {
                     cards[i].style.left = leftValue - 220 + 'px';
                 }
                 else if (leftValue === chooseNewSize + 805) {
                     cards[i].style.left = leftValue - 90 + 'px';
                 }
+            }
+        }
+
+        function addProduct(id) {
+            let proInput = document.getElementById('pro' + id);
+            let proQuantity = proInput.value;
+            
+            if (proQuantity === '0') {
+                proInput.classList.add('shake');
+
+                proInput.addEventListener('animationend', function() {
+                    proInput.classList.remove('shake');
+                });
+            } 
+            else {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '../../../functions/add_cart_product.php', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                
+                // Callback a ser executado quando a resposta do servidor for recebida
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        console.log(xhr.responseText);
+                        console.log(typeof(xhr.responseText));
+                        var response = xhr.responseText;
+                        
+                        // Se a resposta for "0", mostra a mensagem de erro
+                        if(response === "0") {
+                            window.alert('Ocorreu um erro.');
+                        }
+                        // Se a resposta for "1", redireciona para a home
+                        else if (response === "1") {
+                            window.alert('sucesso');
+                            window.location.reload();
+                        }
+                    }
+                };
+            
+                // Converte os dados para a notação de URL
+                var params = 'pro_id=' + id + '&quantidade=' + proQuantity;
+                
+                xhr.send(params);
             }
         }
     </script>

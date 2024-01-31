@@ -133,7 +133,8 @@ if (isset($_POST['sair'])) {
                         // Se a resposta for "1", mostra uma mensagem de sucesso
                         else if (response === "1") {
                             document.getElementById('error').style.display = 'none';
-                            window.alert("Cadastro realizado com sucesso!")
+                            window.alert("Cadastro realizado com sucesso!");
+                            window.location.reload();
                         }
                     }
                 };

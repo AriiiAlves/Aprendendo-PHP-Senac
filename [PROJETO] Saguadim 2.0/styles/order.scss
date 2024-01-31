@@ -1,19 +1,18 @@
 .order_container {
     display: block;
     background-color: rgb(255, 255, 255);
-    width: 550px;
+    width: 720px;
     height: 750px;
     margin: 0 auto 50px auto;
     padding: 20px;
     align-items: center;
 
-    border: 1px solid rgb(88, 88, 88);
+    border: 1px solid #585858;
     border-radius: 10px;
 
     box-shadow: 5px 5px;
 
     .choose_new, .chosen, .end {
-        border: 1px solid black;
         padding: 10px;
         margin: 20px 0 20px 0;
 
@@ -30,10 +29,14 @@
         display: flex;
         justify-content: left;
         overflow: hidden;
+        padding: 10px;
+        padding-top: 0;
+        margin-top: 10px;
 
         h2 {
             position: absolute;
-            width: 508px;
+            display: block;
+            width: calc(100% - 10px);
             text-align: center;
         }
 
@@ -96,9 +99,10 @@
             display: inline-block;
             border: 1px solid;
             border-radius: 10px;
+            box-shadow: 3px 3px black;
             width: 200px;
             height: 200px;
-            margin: 40px 10px 0 10px;
+            margin: 50px 10px 0 10px;
 
             .title_card, .desc_card, .price_card {
                 display: block;
@@ -120,9 +124,11 @@
             .desc_card {
                 margin-top: 5px;
                 height: auto;
-                max-height: 40px;
+                max-height: 58px;
+                padding: 0 5px 0 5px;
                 font-size: 12px;
                 overflow: hidden;
+                text-align: justify;
                 text-overflow: ellipsis;
             }
 
@@ -150,7 +156,7 @@
                     width: 50px;
                     height: 30px;
                     text-align: center;
-                    border: 1px solid black;
+                    border: none;
                     border-radius: 10px;
                     outline: none;
                     background-color: rgb(253, 174, 78);
@@ -159,10 +165,20 @@
                 input:focus {
                     border-color: rgb(253, 174, 78);
                 }
+                input.shake {
+                    @keyframes shake {
+                        0% { transform: translateX(0); }
+                        25% { transform: translateX(5px) rotate(2deg); }
+                        50% { transform: translateX(-5px) rotate(-2deg); }
+                        75% { transform: translateX(3px) rotate(1deg); }
+                        100% { transform: translateX(0); }
+                    }
+                    animation: shake 0.2s ease-in-out 1;
+                }
                 button {
                     width: 120px;
                     height: 30px;
-                    border: 1px solid black;
+                    border: none;
                     border-radius: 10px;
                     background-color: rgb(253, 174, 78);
                     color: white;
@@ -179,13 +195,97 @@
         height: auto;
         max-height: 300px;
         overflow-y: auto;
+        padding-top: 0;
+
+        table {
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            position: relative;
+
+            th, td {
+                padding: 5px;
+            }
+            th {
+                padding: 12px 8px;
+                background-color: rgb(41, 209, 111);
+                color: white;
+                position: sticky;
+                top: 0;
+            }
+            th:nth-child(1) {
+                border-top-left-radius: 10px;
+            }
+            th:last-child {
+                border-top-right-radius: 10px;
+            }
+            tr {
+                background-color: #c7c7c7b0;
+            }
+            tr:nth-child(even) {
+                background-color: #dbdbdbb0;
+            }
+            tr:last-child {
+                td {
+                    padding: 5px;
+                }
+                td:first-child {
+                    background-color: rgb(41, 209, 111);
+                    color: white;
+                }
+
+                button {
+                    visibility: hidden;
+                    pointer-events: none;
+                }
+            }
+
+            button {
+                display: block;
+                margin: auto;
+                width: 50px;
+                padding: 5px 5px;
+                background-color: #04AA6D;
+                text-decoration: none;
+                color: white;
+                border-radius: 10px;
+                border: none;
+                font-size: 12px;
+                text-align: center;
+                background-color: tomato;
+                margin-top: 5px;
+            }
+
+            button:hover {
+                cursor: pointer;
+                transition: ease-in 0.3s;
+                background-color: rgb(196, 76, 54);
+            }
+        }
     }
 
     .end {
         button {
             display: block;
+            box-shadow: 3px 3px black;
+            transition: ease-in-out 0.3s;
+            width: 40%;
+            min-width: auto;
+            height: 40px;
+            border-radius: 5px;
+            text-align: center;
             margin: auto;
+            color: white;
+            font-size: 15px;
+            background-color: rgb(253, 174, 78);
+            border: none;
+            padding: none;
         }
-
+        button:hover {
+            cursor: pointer;
+            width: 100%;
+            transition: ease-in-out 0.3s;
+            background-color: rgb(199, 134, 54);
+        }
     }
 }

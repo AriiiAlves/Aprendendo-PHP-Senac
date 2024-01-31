@@ -87,6 +87,7 @@ if (isset($_POST['sair'])) {
         document.addEventListener('DOMContentLoaded', function() {
             let profile = document.getElementById("profile");
             let details = document.getElementById("details");
+            let textarea = document.getElementById("descricao");
 
             profile.addEventListener('click', function(event) {
                 event.stopPropagation();
@@ -104,6 +105,13 @@ if (isset($_POST['sair'])) {
                 details.style.display = 'none';
                 details.style.opacity = 1;
             });
+
+            textarea.addEventListener('input', function(event) {
+                let textNow = this.value;
+                if(textNow.length > 70) {
+                    textarea.value = textNow.slice(0, 70);
+                }
+            })
         });
 
         // Script AJAX que tenta cadastrar o produto e retorna uma resposta
@@ -134,7 +142,8 @@ if (isset($_POST['sair'])) {
                     // Se a resposta for "1", mostra uma mensagem de sucesso
                     else if (response === "1") {
                         document.getElementById('error').style.display = 'none';
-                        window.alert("Cadastro realizado com sucesso!")
+                        window.alert("Cadastro realizado com sucesso!");
+                        window.location.reload();
                     }
                 }
             };
