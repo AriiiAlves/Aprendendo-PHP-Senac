@@ -50,8 +50,8 @@ while($tbl = mysqli_fetch_array($retorno)) {
             <h2>Cadastro</h2>
             <ul>
                 <li><a href="../../cadastro/user.php">Usuário</a></li> 
-                <li><a href="../../cadastro/client.php" class="selected">Cliente</a></li>
-                <li><a href="../../cadastro/product.php">Produto</a></li>
+                <li><a href="../../cadastro/client.php">Cliente</a></li>
+                <li><a href="../../cadastro/product.php" class="selected">Produto</a></li>
                 <li><a href="../../cadastro/supplier.php">Fornecedor</a></li>
                 
             </ul>

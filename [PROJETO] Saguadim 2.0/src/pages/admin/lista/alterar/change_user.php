@@ -44,8 +44,8 @@ while($tbl = mysqli_fetch_array($retorno)) {
         <div class="ul_container">
             <h2>Cadastro</h2>
             <ul>
-                <li><a href="../../cadastro/user.php">Usuário</a></li> 
-                <li><a href="../../cadastro/client.php" class="selected">Cliente</a></li>
+                <li><a href="../../cadastro/user.php" class="selected">Usuário</a></li> 
+                <li><a href="../../cadastro/client.php">Cliente</a></li>
                 <li><a href="../../cadastro/product.php">Produto</a></li>
                 <li><a href="../../cadastro/supplier.php">Fornecedor</a></li>
                 

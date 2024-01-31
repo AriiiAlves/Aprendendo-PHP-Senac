@@ -38,9 +38,9 @@ $fornecedor_nome = mysqli_fetch_array(mysqli_query($link, $sql))[0];
             <h2>Cadastro</h2>
             <ul>
                 <li><a href="../../cadastro/user.php">Usuário</a></li> 
-                <li><a href="../../cadastro/client.php" class="selected">Cliente</a></li>
+                <li><a href="../../cadastro/client.php">Cliente</a></li>
                 <li><a href="../../cadastro/product.php">Produto</a></li>
-                <li><a href="../../cadastro/supplier.php">Fornecedor</a></li>
+                <li><a href="../../cadastro/supplier.php" class="selected">Fornecedor</a></li>
                 
             </ul>
             <h2>Lista</h2>

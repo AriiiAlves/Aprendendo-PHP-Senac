@@ -78,7 +78,7 @@ if (isset($_POST['sair'])) {
                         <span><?= $descricao ?></span>
                     </div>
                     <div class="price_card">
-                        <span>R$ <?= number_format($preco, 2, ',') ?></span>
+                        <span>R$ <?= number_format($preco, 2, ',', '.') ?></span>
                     </div>
                     <div class="end_card">
                         <input type="number" step="1" min="1" max="<?= $quantidade ?>" id="pro<?= $id ?>" value="0"></input>
@@ -93,30 +93,67 @@ if (isset($_POST['sair'])) {
         </div>
         <div class="chosen">
             <h2>Produtos selecionados</h2>
-            <table>
+            <table id="table">
                 <th>Nome do produto</th>
                 <th>Quantidade</th>
                 <th>Preço unitário (R$)</th>
                 <th>Preço total (R$)</th>
                 <th></th>
-                <tr>
-                    <td>Esfiha</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <td>25</td>
-                    <td><button onclick="alert('Elemento clicado!')">Excluir</button></td>
-                </tr>
-                <tr>
-                    <td>Total</td>
-                    <td>quantidade aqui</td>
-                    <td>-</td>
-                    <td>preço total aqui</td>
-                    <td><button>Oculto</button></td>
-                </tr>
+                
+                <?php
+                if(isset($_SESSION['codigo_venda'])) {
+                    $sql = "SELECT iv_id, iv_quantidade, iv_total, pro_nome, pro_preco FROM item_venda 
+                            INNER JOIN produtos ON item_venda.fk_pro_id = produtos.pro_id
+                            WHERE iv_codigo =" . $_SESSION['codigo_venda'];
+                    $retorno = mysqli_query($link, $sql);
+
+                    $total_encomenda = 0;
+                    $quantidade_encomenda = 0;
+
+                    while($tbl = mysqli_fetch_array($retorno)) {
+                        $iv_id = $tbl[0];
+                        $quantidade = $tbl[1];
+                        $quantidade_encomenda += $quantidade;
+                        $total = $tbl[2];
+                        $total_encomenda += $total;
+                        $nome = $tbl[3];
+                        $preco = $tbl[4];
+                ?>
+                        <tr>
+                            <td><?= $nome ?></td>
+                            <td><?= $quantidade ?></td>
+                            <td><?= number_format($preco, 2, ',', '') ?></td>
+                            <td><?= number_format($total, 2, ',', '') ?></td>
+                            <td><button onclick="deleteItem(<?= $iv_id ?>)">Excluir</button></td>
+                        </tr>
+                <?php
+                    }
+                ?>
+                    <tr>
+                        <td>Total</td>
+                        <td><?= $quantidade_encomenda ?></td>
+                        <td>-</td>
+                        <td><?= number_format($total_encomenda, 2, ',', '') ?></td>
+                        <td><button>Oculto</button></td>
+                    </tr>
+                <?php
+                }
+                else {
+                ?>
+                    <tr>
+                        <td>Total</td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td>0</td>
+                        <td><button>Oculto</button></td>
+                    </tr>
+                <?php 
+                }
+                ?>
             </table>
         </div>
         <div class="end">
-            <button>Finalizar pedido</button>
+            <button onclick="finalizar()">Finalizar pedido</button>
         </div>
     </div>
     <script>
@@ -148,6 +185,10 @@ if (isset($_POST['sair'])) {
             if (cards.length <= 3) {
                 leftButton.style.display = 'none';
                 rightButton.style.display = 'none';
+            }
+            else {
+                leftButton.style.display = 'block';
+                rightButton.style.display = 'block';
             }
 
 
@@ -235,16 +276,14 @@ if (isset($_POST['sair'])) {
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         console.log(xhr.responseText);
-                        console.log(typeof(xhr.responseText));
-                        var response = xhr.responseText;
+                        var response = xhr.response;
                         
                         // Se a resposta for "0", mostra a mensagem de erro
                         if(response === "0") {
                             window.alert('Ocorreu um erro.');
                         }
-                        // Se a resposta for "1", redireciona para a home
+                        // Se a resposta for "1", recarrega a página para recarregar a tabela
                         else if (response === "1") {
-                            window.alert('sucesso');
                             window.location.reload();
                         }
                     }
@@ -255,6 +294,62 @@ if (isset($_POST['sair'])) {
                 
                 xhr.send(params);
             }
+        }
+
+        function deleteItem(codigo_venda) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '../../../functions/delete_item_venda.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            
+            // Callback a ser executado quando a resposta do servidor for recebida
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText)
+                    var response = xhr.responseText;
+                    
+                    // Se a resposta for "0", mostra a mensagem de erro
+                    if(response === "0") {
+                        window.alert('Ocorreu um erro.');
+                    }
+                    // Se a resposta for "1", recarrega a página
+                    else if (response === "1") {
+                        window.location.reload();
+                    }
+                }
+            };
+        
+            // Converte os dados para a notação de URL
+            var params = 'codigo_venda=' + codigo_venda;
+            
+            xhr.send(params);
+        }
+
+        function finalizar() {
+            // Vai registrar tudo na tabela encomenda. Quando a encomenda for entregue e paga,
+            // Será marcado como concluído e só assim registrado na tabela venda.
+            // Importante fazer um botão de confirmação depois
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '../../../functions/end_sale.php', true);
+            
+            // Callback a ser executado quando a resposta do servidor for recebida
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText)
+                    var response = xhr.responseText;
+                    
+                    // Se a resposta for "0", mostra a mensagem de erro
+                    if(response === "0") {
+                        window.alert('Ocorreu um erro.');
+                    }
+                    // Se a resposta for "1", redireciona para a home
+                    else if (response === "1") {
+                        window.location.reload();
+                    }
+                }
+            };
+            
+            xhr.send();
         }
     </script>
 </body>
