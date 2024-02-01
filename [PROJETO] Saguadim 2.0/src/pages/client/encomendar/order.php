@@ -153,6 +153,8 @@ if (isset($_POST['sair'])) {
             </table>
         </div>
         <div class="end">
+            <h2>Data e hora de retirada</h2>
+            <input type="datetime-local" id="delivery_date" min="" max="">
             <button onclick="endOrder()">Finalizar pedido</button>
         </div>
     </div>
@@ -164,6 +166,13 @@ if (isset($_POST['sair'])) {
             var rightButton = document.getElementById("right");
             var cards = document.querySelectorAll('.product_card');
             var descCard = document.querySelectorAll('.desc_card');
+            var deliveryDate = document.getElementById("delivery_date");
+
+            var todayDate = new Date();
+            deliveryDate.min = todayDate.toISOString().slice(0, 16).replace('T', ' ');
+
+            todayDate.setDate(todayDate.getDate() + 28);
+            deliveryDate.max = todayDate.toISOString().slice(0, 16).replace('T', ' ');
 
             profile.addEventListener('click', function(event) {
                 event.stopPropagation();
@@ -325,35 +334,43 @@ if (isset($_POST['sair'])) {
         }
 
         function endOrder() {
-            // Vai registrar tudo na tabela encomenda. Quando a encomenda for entregue e paga,
-            // Será marcado como concluído e só assim registrado na tabela venda.
-            // Importante fazer um botão de confirmação depois
+            var deliveryDate = document.getElementById("delivery_date").value;
+            var deliverDateVerify = new Date(deliveryDate);
+
+            if (deliverDateVerify.getDay() === 6 || deliverDateVerify.getDay() === 0) {
+                alert("Não funcionamos ao fim de semana.");
             
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '../../../functions/end_sale.php', true);
-            
-            // Callback a ser executado quando a resposta do servidor for recebida
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log(xhr.responseText);
-                    var response = xhr.responseText;
-                    
-                    // Se a resposta for "0", mostra a mensagem de erro
-                    if(response === "0") {
-                        window.alert('Ocorreu um erro.');
+            }
+            else if(deliverDateVerify.getHours() < 8 || deliverDateVerify.getHours() > 18) {
+                alert("Funcionamos somente das 08:00 às 18:00.");
+            }
+            else {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', `../../../functions/end_sale.php?q="${deliveryDate}"`, true);
+                
+                // Callback a ser executado quando a resposta do servidor for recebida
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        console.log(xhr.responseText);
+                        var response = xhr.responseText;
+                        
+                        // Se a resposta for "0", mostra a mensagem de erro
+                        if(response === "0") {
+                            window.alert('Ocorreu um erro.');
+                        }
+                        // Se a resposta for "1", redireciona para a home
+                        else if (response === "1") {
+                            window.alert('Pedido realizado com sucesso!');
+                            window.location = '../home.php';
+                        }
+                        else if(response === "void_cart") {
+                            window.alert('Insira pelo menos um produto para realizar o pedido.');
+                        }
                     }
-                    // Se a resposta for "1", redireciona para a home
-                    else if (response === "1") {
-                        window.alert('Pedido realizado com sucesso!');
-                        window.location = '../home.php';
-                    }
-                    else if(response === "void_cart") {
-                        window.alert('Insira pelo menos um produto para realizar o pedido.');
-                    }
-                }
-            };
-            
-            xhr.send();
+                };
+                
+                xhr.send();
+            }
         }
     </script>
 </body>

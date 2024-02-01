@@ -1,5 +1,6 @@
 <?php
 
+include('../../functions/conectadb.php');
 include('../../functions/session_validation_client.php');
 
 if (isset($_POST['sair'])) {
@@ -13,6 +14,10 @@ if (isset($_POST['sair'])) {
     header("Location: /%5bPROJETO%5d%20Saguadim%202.0/index.php");
     exit(); // Certifique-se de encerrar o script após o redirecionamento
 }
+
+$sql = "SELECT DISTINCT COUNT(fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND (enc_status = 's' OR enc_status = 'a')";
+$pedidos = mysqli_fetch_array(mysqli_query($link, $sql))[0];
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +50,14 @@ if (isset($_POST['sair'])) {
         </a>
         <a href="pedidos/requests_home.php">
             <div>
-                <span>5</span>
+                <?php
+                
+                if($pedidos > 0) {
+                ?>
+                    <span><?= $pedidos ?></span>
+                <?php
+                }
+                ?>
                 <img src="../../../public/photos/saco-de-papel.png">
                 <p>Pedidos</p>
             </div>

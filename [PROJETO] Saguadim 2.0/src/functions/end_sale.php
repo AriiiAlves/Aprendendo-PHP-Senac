@@ -4,7 +4,7 @@ session_start();
 include('conectadb.php');
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
-    $codigo_venda = $_SESSION['codigo_venda'];
+    $data_entrega = $_GET['q'];
 
     // Registrar encomenda
     try {
@@ -28,8 +28,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                     mysqli_query($link, $sql);
 
                 // Depois gera a encomenda
-                $data_entrega = date('d/m/Y H:i:s'); // COLOCAR FUNÇÃO PARA DEFINIR DATA DE ENTREGA AINDA
-                
                 $sql = "SELECT iv_id, iv_quantidade FROM item_venda WHERE iv_codigo = " . $codigo_venda;
                 $retorno = mysqli_query($link, $sql);
 
@@ -40,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                     $sql = "INSERT INTO encomendas(enc_emissao, enc_entrega, fk_pro_id, enc_pro_quantidade, fk_cli_id, fk_ven_id, enc_status)
                     VALUES(
                         NOW(),
-                        NOW(),
+                        $data_entrega,
                         $pro_id,
                         $pro_quantidade,
                         $cli_id,

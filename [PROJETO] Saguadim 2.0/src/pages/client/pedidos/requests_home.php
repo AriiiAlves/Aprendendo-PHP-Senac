@@ -15,6 +15,15 @@ if (isset($_POST['sair'])) {
     exit(); // Certifique-se de encerrar o script após o redirecionamento
 }
 
+$sql = "SELECT DISTINCT COUNT(fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND enc_status = 's'";
+$emPreparo = mysqli_fetch_array(mysqli_query($link, $sql))[0];
+
+$sql = "SELECT DISTINCT COUNT(fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND enc_status = 'a'";
+$aguardandoRetirada = mysqli_fetch_array(mysqli_query($link, $sql))[0];
+
+$sql = "SELECT DISTINCT COUNT(fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND enc_status = 'n'";
+$entregues = mysqli_fetch_array(mysqli_query($link, $sql))[0];
+
 ?>
 
 <!DOCTYPE html>
@@ -46,24 +55,47 @@ if (isset($_POST['sair'])) {
         </div>
     </div>
     <div class="cards">
-        <a href="order.php">
+        <a href="preparing.php">
             <div>
-                <span>5</span>
+                <?php
+                
+                if($emPreparo > 0) {
+                ?>
+                    <span><?= $emPreparo ?></span>
+                <?php
+                }
+                ?>
+                
                 <img src="../../../../public/photos/drive-through.png">
                 <p>Em preparo</p>
             </div>
         </a>
-        <a href="requests.php">
+        <a href="waiting.php">
             <div>
-                <span>5</span>
+                <?php
+                
+                if($aguardandoRetirada > 0) {
+                ?>
+                    <span><?= $aguardandoRetirada ?></span>
+                <?php
+                }
+                ?>
                 <img src="../../../../public/photos/saco-de-papel.png">
                 <p>Aguardando retirada</p>
             </div>
         </a>
-        <a href="requests.php">
+        <a href="concluded.php">
             <div>
+                <?php
+                
+                if($entregues > 0) {
+                ?>
+                    <span><?= $entregues ?></span>
+                <?php
+                }
+                ?>
                 <img src="../../../../public/photos/saco-de-papel.png">
-                <p>Finalizados</p>
+                <p>Entregues</p>
             </div>
         </a>
     </div>

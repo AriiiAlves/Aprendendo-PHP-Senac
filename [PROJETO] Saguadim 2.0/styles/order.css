@@ -2,7 +2,7 @@
   display: block;
   background-color: rgb(255, 255, 255);
   width: 720px;
-  height: 750px;
+  height: auto;
   margin: 0 auto 50px auto;
   padding: 20px;
   align-items: center;
@@ -192,7 +192,7 @@
 }
 .order_container .chosen {
   height: auto;
-  max-height: 300px;
+  max-height: 400px;
   overflow-y: auto;
   padding-top: 0;
 }
@@ -255,6 +255,18 @@
   transition: ease-in 0.3s;
   background-color: rgb(196, 76, 54);
 }
+.order_container .end input {
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 5px;
+  outline: none;
+  color: black;
+}
+.order_container .end input:focus {
+  border-color: rgb(253, 174, 78);
+}
 .order_container .end button {
   display: block;
   box-shadow: 3px 3px black;
@@ -264,7 +276,7 @@
   height: 40px;
   border-radius: 5px;
   text-align: center;
-  margin: auto;
+  margin: 20px auto 0 auto;
   color: white;
   font-size: 15px;
   background-color: rgb(253, 174, 78);
