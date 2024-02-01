@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS encomendas(
     enc_emissao DATETIME NOT NULL,
     enc_entrega DATETIME NOT NULL,
     fk_pro_id INT NOT NULL,
+    enc_pro_quantidade INT NOT NULL,
     fk_cli_id INT NOT NULL,
     fk_ven_id INT NOT NULL, 
     enc_status CHAR(1)

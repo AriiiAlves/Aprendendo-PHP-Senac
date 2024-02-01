@@ -153,7 +153,7 @@ if (isset($_POST['sair'])) {
             </table>
         </div>
         <div class="end">
-            <button onclick="finalizar()">Finalizar pedido</button>
+            <button onclick="endOrder()">Finalizar pedido</button>
         </div>
     </div>
     <script>
@@ -324,7 +324,7 @@ if (isset($_POST['sair'])) {
             xhr.send(params);
         }
 
-        function finalizar() {
+        function endOrder() {
             // Vai registrar tudo na tabela encomenda. Quando a encomenda for entregue e paga,
             // Será marcado como concluído e só assim registrado na tabela venda.
             // Importante fazer um botão de confirmação depois
@@ -335,7 +335,7 @@ if (isset($_POST['sair'])) {
             // Callback a ser executado quando a resposta do servidor for recebida
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log(xhr.responseText)
+                    console.log(xhr.responseText);
                     var response = xhr.responseText;
                     
                     // Se a resposta for "0", mostra a mensagem de erro
@@ -344,7 +344,11 @@ if (isset($_POST['sair'])) {
                     }
                     // Se a resposta for "1", redireciona para a home
                     else if (response === "1") {
-                        window.location.reload();
+                        window.alert('Pedido realizado com sucesso!');
+                        window.location = '../home.php';
+                    }
+                    else if(response === "void_cart") {
+                        window.alert('Insira pelo menos um produto para realizar o pedido.');
                     }
                 }
             };
