@@ -57,6 +57,12 @@ while($tbl = mysqli_fetch_array($retorno)) {
                 <li><a href="../product.php">Produto</a></li>
                 <li><a href="../supplier.php">Fornecedor</a></li>
             </ul>
+            <h2>Encomendas</h2>
+            <ul>
+                <li><a href="../../encomendas/requests.php">Solicitadas</a></li> 
+                <li><a href="../../encomendas/waiting.php">Aguardando entrega</a></li>
+                <li><a href="../../encomendas/concluded.php">Concluídas</a></li>
+            </ul>
         </div>
         <div class="profile" id="profile">
                 <img src="../../../../../public/photos/avatar.png">

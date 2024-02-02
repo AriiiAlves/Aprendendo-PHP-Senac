@@ -1,0 +1,63 @@
+nav .selected {
+    background-color: rgb(253, 174, 78);
+}
+
+.order {
+    margin-top: 5vh;
+}
+
+.info {
+    width: auto;
+    margin: auto;
+    display: none;
+    h3 {
+        margin: 10px 0 0 0;
+        width: auto;
+        text-align: center;
+    }
+
+    p {
+        margin: 0;
+        width: auto;
+        text-align: center;
+    }
+    
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            margin: 10px;
+            width: 180px;
+            border: none;
+        }
+
+        .waiting {
+            background-color: #00ff91;
+        }
+
+        .waiting:hover {
+            transition: ease-in 0.2s;
+            background-color: #00ac61;
+        }
+
+        .concluded {
+            background-color: #00a1ff;
+        }
+
+        .concluded:hover {
+            transition: ease-in 0.2s;
+            background-color: #00649e;
+        }
+
+        .requests {
+            background-color: #ffdf00;
+        }
+
+        .requests:hover {
+            transition: ease-in 0.2s;
+            background-color: #a08b00;
+        }
+    }
+}

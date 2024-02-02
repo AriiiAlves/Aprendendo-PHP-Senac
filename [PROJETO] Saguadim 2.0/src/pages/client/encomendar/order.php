@@ -67,7 +67,7 @@ if (isset($_POST['sair'])) {
                 $quantidade = $tbl[4];
                 $status = $tbl[5];
 
-                if ($status === 's') {
+                if ($status === 's' && $quantidade != 0) {
             ?>
 
                 <div class="product_card">
@@ -344,6 +344,9 @@ if (isset($_POST['sair'])) {
             else if(deliverDateVerify.getHours() < 8 || deliverDateVerify.getHours() > 18) {
                 alert("Funcionamos somente das 08:00 às 18:00.");
             }
+            else if (deliveryDate === "") {
+                alert("Insira uma data e hora de retirada.");
+            }
             else {
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', `../../../functions/end_sale.php?q="${deliveryDate}"`, true);
@@ -355,7 +358,7 @@ if (isset($_POST['sair'])) {
                         var response = xhr.responseText;
                         
                         // Se a resposta for "0", mostra a mensagem de erro
-                        if(response === "0") {
+                        if (response === "0") {
                             window.alert('Ocorreu um erro.');
                         }
                         // Se a resposta for "1", redireciona para a home
@@ -363,8 +366,11 @@ if (isset($_POST['sair'])) {
                             window.alert('Pedido realizado com sucesso!');
                             window.location = '../home.php';
                         }
-                        else if(response === "void_cart") {
+                        else if (response === "void_cart") {
                             window.alert('Insira pelo menos um produto para realizar o pedido.');
+                        }
+                        else if (response === "stock_problem") {
+                            window.alert('A quantidade solicitada é maior do que a disponível em estoque.');
                         }
                     }
                 };

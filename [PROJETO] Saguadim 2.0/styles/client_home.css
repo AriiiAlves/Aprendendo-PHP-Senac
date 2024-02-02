@@ -176,9 +176,7 @@ body {
   transition: ease-in 0.2s;
   width: 215px;
   height: 215px;
-  background-color: rgb(255, 230, 131);
-  border: 1px solid rgb(255, 255, 255);
-  box-shadow: rgb(255, 255, 255) 5px 5px;
+  background-color: rgb(112, 191, 255);
 }
 .cards a:hover div img {
   transition: ease-in 0.2s;

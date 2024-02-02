@@ -15,7 +15,7 @@ if (isset($_POST['sair'])) {
     exit(); // Certifique-se de encerrar o script após o redirecionamento
 }
 
-$sql = "SELECT DISTINCT COUNT(fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND (enc_status = 's' OR enc_status = 'a')";
+$sql = "SELECT COUNT(DISTINCT fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND (enc_status = 's' OR enc_status = 'a')";
 $pedidos = mysqli_fetch_array(mysqli_query($link, $sql))[0];
 
 ?>
@@ -62,18 +62,21 @@ $pedidos = mysqli_fetch_array(mysqli_query($link, $sql))[0];
                 <p>Pedidos</p>
             </div>
         </a>
+        <!-- Não há uma estrutura o suficiente no banco de dados para suportar adição e controle de saldo
         <a href="financeiro/payments.php">
             <div>
                 <img src="../../../public/photos/money-bag.png">
                 <p>Saldo e extrato</p>
             </div>
         </a>
+            -->
     </div>
     <div class="credits">
         <p> 
             Ícones feitos por 
             <a href="https://www.flaticon.com/br/autores/berkahicon" title="berkahicon"> berkahicon, </a>
             <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Good Ware, </a>
+            <a href="https://www.flaticon.com/free-icons/back" title="back icons">Jesus Chavarria, </a>
             <a href="https://www.flaticon.com/br/icones-gratis/saco-de-papel" title="saco de papel ícones">Smashicons, </a> e
             <a href="https://www.flaticon.com/br/icones-gratis/drive-through" title="drive-through ícones">Freepik</a>
             de <a href="https://www.flaticon.com/br/" title="Flaticon">www.flaticon.com</a>

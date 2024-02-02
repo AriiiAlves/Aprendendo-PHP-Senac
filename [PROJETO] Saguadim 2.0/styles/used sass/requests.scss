@@ -21,7 +21,7 @@
 
     button {
         display: block;
-        margin: auto;
+        margin: 20px auto 10px auto;
         border: 1px solid rgb(253, 174, 78);;
         border-radius: 10px;
         padding: 10px;
@@ -34,6 +34,33 @@
             margin: 5px 0 0 0;
             font-size: 14px;
         }
+
+        // .waiting {
+        //     background-color: #00ff91;
+        // }
+
+        // .waiting:hover {
+        //     transition: ease-in 0.2s;
+        //     background-color: #00ac61;
+        // }
+
+        // .concluded {
+        //     background-color: #00a1ff;
+        // }
+
+        // .concluded:hover {
+        //     transition: ease-in 0.2s;
+        //     background-color: #00649e;
+        // }
+
+        // .requests {
+        //     background-color: #ffdf00;
+        // }
+
+        // .requests:hover {
+        //     transition: ease-in 0.2s;
+        //     background-color: #a08b00;
+        // }
     }
 
     button:hover {
@@ -44,7 +71,7 @@
         display: none;
         background-color: rgb(41, 209, 111);
         height: 20px;
-        margin: 10px auto 0 auto;
+        margin: auto;
         border-radius: 50px;
         padding: 5px;
         transform: rotate(90deg);

@@ -15,13 +15,13 @@ if (isset($_POST['sair'])) {
     exit(); // Certifique-se de encerrar o script após o redirecionamento
 }
 
-$sql = "SELECT DISTINCT COUNT(fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND enc_status = 's'";
+$sql = "SELECT COUNT(DISTINCT fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND enc_status = 's'";
 $emPreparo = mysqli_fetch_array(mysqli_query($link, $sql))[0];
 
-$sql = "SELECT DISTINCT COUNT(fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND enc_status = 'a'";
+$sql = "SELECT COUNT(DISTINCT fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND enc_status = 'a'";
 $aguardandoRetirada = mysqli_fetch_array(mysqli_query($link, $sql))[0];
 
-$sql = "SELECT DISTINCT COUNT(fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND enc_status = 'n'";
+$sql = "SELECT COUNT(DISTINCT fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND enc_status = 'n'";
 $entregues = mysqli_fetch_array(mysqli_query($link, $sql))[0];
 
 ?>
@@ -66,7 +66,7 @@ $entregues = mysqli_fetch_array(mysqli_query($link, $sql))[0];
                 }
                 ?>
                 
-                <img src="../../../../public/photos/drive-through.png">
+                <img src="../../../../public/photos/saco-de-papel-amarelo.png">
                 <p>Em preparo</p>
             </div>
         </a>
@@ -80,21 +80,13 @@ $entregues = mysqli_fetch_array(mysqli_query($link, $sql))[0];
                 <?php
                 }
                 ?>
-                <img src="../../../../public/photos/saco-de-papel.png">
+                <img src="../../../../public/photos/saco-de-papel-verde.png">
                 <p>Aguardando retirada</p>
             </div>
         </a>
         <a href="concluded.php">
             <div>
-                <?php
-                
-                if($entregues > 0) {
-                ?>
-                    <span><?= $entregues ?></span>
-                <?php
-                }
-                ?>
-                <img src="../../../../public/photos/saco-de-papel.png">
+                <img src="../../../../public/photos/saco-de-papel-azul.png">
                 <p>Entregues</p>
             </div>
         </a>

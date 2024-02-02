@@ -24,13 +24,18 @@ if (isset($_POST['sair'])) {
     <title>Saguadim</title>
     <link rel="stylesheet" href="../../../../styles/client_home.css">
     <link rel="stylesheet" href="../../../../styles/profile_client.css">
-    <link rel="stylesheet" href="../../../../styles/concluded.css">
+    <link rel="stylesheet" href="../../../../styles/requests.css">
 </head>
 <body>
     <div class="profile_box">
         <div class="home">
             <a href="../home.php">
                 <img src="../../../../public/photos/house.png">
+            </a>
+        </div>
+        <div class="home">
+            <a href="requests_home.php">
+                <img src="../../../../public/photos/return.png">
             </a>
         </div>
         <div class="profile" id="profile">
@@ -45,10 +50,10 @@ if (isset($_POST['sair'])) {
         </div>
     </div>
     <div class="order">
-        <h2>Histórico de pedidos entregues</h2>
+        <h2>Pedidos finalizados</h2>
             <?php
 
-            $sql = "SELECT fk_ven_id FROM encomendas WHERE enc_status = 's'";
+            $sql = "SELECT DISTINCT fk_ven_id FROM encomendas WHERE enc_status = 'n'";
             $retorno = mysqli_query($link, $sql);
 
             while($tbl = mysqli_fetch_array($retorno)) {
@@ -62,9 +67,9 @@ if (isset($_POST['sair'])) {
                 ?>
 
                 <button onclick="viewTable(<?= $codigoVenda ?>)">
-                    <h3>Pedido do dia <span><?= $dataPedido ?><span></h3>
+                    <h3>Pedido para o dia <span><?= $dataEntrega ?><span></h3>
                     <p>ID do pedido: <?= $codigoVenda ?></p>
-                    <p>Data de entrega: <?= $dataEntrega ?></p>
+                    <p>Data de emissão: <?= $dataPedido ?></p>
                     <p>Situação: Entregue</p>
                 </button>
                 <img src="../../../../public/photos/arrow.png" id="arrow<?= $codigoVenda ?>">
@@ -97,15 +102,24 @@ if (isset($_POST['sair'])) {
                         </tr>
                         <?php
                     }
+                
+                    $sql = "SELECT SUM(iv_quantidade), SUM(iv_total) FROM item_venda WHERE iv_codigo = " . $codigoVenda;
+                    $quantidadeTotal = mysqli_fetch_array((mysqli_query($link, $sql)))[0];
+                    $valorTotal = mysqli_fetch_array((mysqli_query($link, $sql)))[1];
+
+                    ?>
+                        <tr>
+                            <td>Total</td>
+                            <td><?= $quantidadeTotal ?></td>
+                            <td>-</td>
+                            <td><?= $valorTotal ?></td>
+                        </tr>
+                    </table>
+
+                    <?php
                 }
 
                 ?>
-                <tr>
-                    <td>Total</td>
-                    <td>0</td>
-                    <td>-</td>
-                    <td>0</td>
-                </tr>s
         </table>
     </div>
     <script>
