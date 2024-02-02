@@ -1,8 +1,10 @@
 <?php
 
 include('../../../../functions/conectadb.php');
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../../../functions/session_validation_user.php');
 
+// Script de ação ao botão "sair"
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
     session_unset();
@@ -15,6 +17,7 @@ if (isset($_POST['sair'])) {
     exit();
 }
 
+// Obtém o id do produto a ser alterado via GET, e coleta seus dados, que serão apresentados em campos input editáveis
 $pro_id = $_GET['id'];
 
 $sql = "SELECT * FROM produtos WHERE pro_id = $pro_id";
@@ -125,8 +128,8 @@ while($tbl = mysqli_fetch_array($retorno)) {
             </div>
         </div>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.1.0/vanilla-masker.min.js"></script>
     <script>
+        // Carregando eventos ao carregar a DOM
         document.addEventListener('DOMContentLoaded', function() {
             // Visibilidade de detalhes (Perfil/Sair) ao clicar no ícone do perfil
             let profile = document.getElementById("profile");

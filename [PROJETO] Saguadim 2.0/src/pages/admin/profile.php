@@ -1,8 +1,10 @@
 <?php
 
 include('../../functions/conectadb.php');
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../functions/session_validation_user.php');
 
+// Script de ação ao botão "sair"
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
     session_unset();
@@ -15,7 +17,10 @@ if (isset($_POST['sair'])) {
     exit(); // Certifique-se de encerrar o script após o redirecionamento
 }
 
+// Definindo id do usuário para botão de perfil
 $usu_id = $_SESSION['idusuario'];
+
+// Buscando o nome e email do usuário com seu id
 $sql = "SELECT usu_login, usu_email FROM usuarios WHERE usu_id = $usu_id";
 $retorno = mysqli_query($link, $sql);
 
@@ -100,6 +105,7 @@ while ($tbl = mysqli_fetch_array($retorno)) {
 </html>
 
 <script>
+    // Carregando eventos ao carregar a DOM
     document.addEventListener('DOMContentLoaded', function() {
         let profile = document.getElementById("profile");
         let details = document.getElementById("details");
@@ -122,6 +128,7 @@ while ($tbl = mysqli_fetch_array($retorno)) {
         });
     });
 
+    // Coleta os dados e envia por AJAX, para não precisar ir e voltar do arquivo PHP
     function submitForm() {
         var senha = document.getElementById('senha').value;
         var nova_senha = document.getElementById('nova_senha').value;

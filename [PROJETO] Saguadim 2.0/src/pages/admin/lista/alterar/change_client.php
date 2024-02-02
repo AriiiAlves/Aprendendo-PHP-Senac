@@ -1,8 +1,10 @@
 <?php
 
 include('../../../../functions/conectadb.php');
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../../../functions/session_validation_user.php');
 
+// Script de ação ao botão "sair"
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
     session_unset();
@@ -15,6 +17,7 @@ if (isset($_POST['sair'])) {
     exit();
 }
 
+// Obtém o id do cliente a ser alterado via GET, e coleta seus dados, que serão apresentados em campos input editáveis
 $cli_id = $_GET['id'];
 
 $sql = "SELECT * FROM clientes WHERE cli_id = $cli_id";
@@ -114,6 +117,7 @@ while($tbl = mysqli_fetch_array($retorno)) {
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.1.0/vanilla-masker.min.js"></script>
     <script>
+        // Carregando eventos ao carregar a DOM
         document.addEventListener('DOMContentLoaded', function() {
             // Máscaras de inputs
             var cellphoneInput = document.getElementById('celular');

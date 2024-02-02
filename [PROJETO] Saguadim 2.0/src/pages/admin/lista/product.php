@@ -1,8 +1,10 @@
 <?php
 
 include('../../../functions/conectadb.php');
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../../functions/session_validation_user.php');
 
+// Script de ação ao botão "sair"
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
     session_unset();
@@ -75,7 +77,7 @@ if (isset($_POST['sair'])) {
                 <th>Status</th>
                 <th></th>
                 <?php
-                            
+                    // Coleta nome, descrição, custo, preço, quantidade, validade, status, id e id do fornecedor para criar uma lista
                     $sql = "SELECT pro_nome, pro_descricao, pro_custo, pro_preco, pro_quantidade, pro_validade, fk_fornecedor_id, pro_status, pro_id FROM produtos";
                     $retorno = mysqli_query($link, $sql);
 
@@ -89,7 +91,7 @@ if (isset($_POST['sair'])) {
                             <td><?= $tbl[4] ?></td>
                             <td><?= $tbl[5] ?></td>
                             <?php
-                        
+                            // Busca o nome do fornecedor com o id de fornecedor
                             $sql = "SELECT fornecedor_nome, fornecedor_id FROM fornecedores WHERE fornecedor_id = $tbl[6]";
                             $fornecedor = mysqli_fetch_array(mysqli_query($link, $sql))[0];
 
@@ -111,6 +113,7 @@ if (isset($_POST['sair'])) {
 </html>
 
 <script>
+    // Carregando eventos ao carregar a DOM
     document.addEventListener('DOMContentLoaded', function() {
         let profile = document.getElementById("profile");
         let details = document.getElementById("details");

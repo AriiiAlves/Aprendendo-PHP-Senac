@@ -1,8 +1,10 @@
 <?php
 
 include('../../../functions/conectadb.php');
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../../functions/session_validation_user.php');
 
+// Script de ação ao botão "sair"
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
     session_unset();
@@ -75,7 +77,7 @@ if (isset($_POST['sair'])) {
                 <th>Status</th>
                 <th></th>
                 <?php
-                            
+                    // Busca nome, email, telefone, cpf, curso, sala, saldo, status e id para criar uma lista
                     $sql = "SELECT cli_nome, cli_email, cli_telefone, cli_cpf, cli_curso, cli_sala, cli_saldo, cli_status, cli_id FROM clientes";
                     $retorno = mysqli_query($link, $sql);
 
@@ -105,6 +107,7 @@ if (isset($_POST['sair'])) {
 </html>
 
 <script>
+    // Carregando eventos ao carregar a DOM
     document.addEventListener('DOMContentLoaded', function() {
         let profile = document.getElementById("profile");
         let details = document.getElementById("details");

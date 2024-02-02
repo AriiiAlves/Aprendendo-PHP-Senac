@@ -1,7 +1,9 @@
 <?php
 
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../../functions/session_validation_user.php');
 
+// Script de ação ao botão "sair"
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
     session_unset();
@@ -79,6 +81,7 @@ if (isset($_POST['sair'])) {
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.1.0/vanilla-masker.min.js"></script>
     <script>
+        // Carregando eventos ao carregar a DOM
         document.addEventListener('DOMContentLoaded', function() {
             // Máscaras de inputs
             var cellphoneInput = document.getElementById('celular');
@@ -120,7 +123,8 @@ if (isset($_POST['sair'])) {
             var cpf = document.getElementById('cpf').value;
             var curso = document.getElementById('curso').value;
             var sala = document.getElementById('sala').value;
-        
+            
+            // Verifica se as senhas são iguais
             if (senha === senha2) {
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', '../../../functions/client_register.php', true);

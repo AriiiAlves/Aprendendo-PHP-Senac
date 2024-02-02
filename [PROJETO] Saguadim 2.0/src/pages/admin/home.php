@@ -1,7 +1,9 @@
 <?php
 
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../functions/session_validation_user.php');
 
+// Script de ação ao botão "sair"
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
     session_unset();
@@ -66,6 +68,7 @@ if (isset($_POST['sair'])) {
 </html>
 
 <script>
+    // Carrega os eventos ao carregar a DOM
     document.addEventListener('DOMContentLoaded', function() {
         let profile = document.getElementById("profile");
         let details = document.getElementById("details");

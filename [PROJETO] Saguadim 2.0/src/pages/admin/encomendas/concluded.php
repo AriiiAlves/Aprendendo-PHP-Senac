@@ -1,8 +1,10 @@
 <?php
 
 include('../../../functions/conectadb.php');
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../../functions/session_validation_user.php');
 
+// Script de ação ao botão "sair"
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
     session_unset();
@@ -67,13 +69,14 @@ if (isset($_POST['sair'])) {
         <div class="order">
         <h2>Pedidos finalizados</h2>
             <?php
-
+            // Busca os id's de venda únicos (um id representa um pacote de encomenda, e vários itens_venda) de encomendas CONCLUÍDAS
             $sql = "SELECT DISTINCT fk_ven_id FROM encomendas WHERE enc_status = 'n'";
             $retorno = mysqli_query($link, $sql);
 
             while($tbl = mysqli_fetch_array($retorno)) {
                 $codigoVenda = $tbl[0];
 
+                // Para cada id de venda, coleta os dados do pacote de encomendas atrelado à venda
                 $sql = "SELECT DISTINCT enc_emissao, enc_entrega, fk_cli_id FROM encomendas WHERE fk_ven_id = "  . $codigoVenda;
                 $dataPedido = mysqli_fetch_array(mysqli_query($link, $sql))[0];
                 $dataPedido = substr($dataPedido, 8, 2) . '/' . substr($dataPedido, 5, 2) . '/' . substr($dataPedido, 0, 4);
@@ -94,6 +97,7 @@ if (isset($_POST['sair'])) {
                     <h3>Dados do cliente</h3>
                     <?php 
                     
+                    // Para cada id de venda, coleta os dados do cliente que gerou a venda
                     $sql = "SELECT cli_nome, cli_curso, cli_sala, cli_cpf, cli_telefone FROM clientes WHERE cli_id = "  . $cliId;
                     $dadosCliente = mysqli_query($link, $sql);
                     while($tbl = mysqli_fetch_array($dadosCliente)) {
@@ -121,6 +125,7 @@ if (isset($_POST['sair'])) {
                     <th>Preço total (R$)</th>
                     <?php
                     
+                    // Para cada id de venda, coleta todos os itens_venda atrelado ao pacote de encomendas
                     $sql = "SELECT pro_nome, iv_quantidade, pro_preco, iv_total 
                     FROM item_venda 
                     INNER JOIN produtos 
@@ -143,7 +148,8 @@ if (isset($_POST['sair'])) {
                         </tr>
                         <?php
                     }
-                
+                    
+                    // Seleciona a quantidade total de itens na venda, e o valor total da venda
                     $sql = "SELECT SUM(iv_quantidade), SUM(iv_total) FROM item_venda WHERE iv_codigo = " . $codigoVenda;
                     $quantidadeTotal = mysqli_fetch_array((mysqli_query($link, $sql)))[0];
                     $valorTotal = mysqli_fetch_array((mysqli_query($link, $sql)))[1];
@@ -168,6 +174,7 @@ if (isset($_POST['sair'])) {
 </html>
 
 <script>
+    // Carregando eventos ao carregar a DOM
     document.addEventListener('DOMContentLoaded', function() {
         let profile = document.getElementById("profile");
         let details = document.getElementById("details");
@@ -190,6 +197,7 @@ if (isset($_POST['sair'])) {
         });
     });
 
+    // Função para visualizar e esconder tabelas com id's únicos, definidos pelo id de venda
     function viewTable(index) {
             table = document.getElementById('table' + index);
             arrow = document.getElementById('arrow' + index);
@@ -207,7 +215,7 @@ if (isset($_POST['sair'])) {
             }
         }
 
-    // Script AJAX que tenta excluir um cliente e retorna uma resposta
+    // Script AJAX que tenta modificar o estado da encomenda e retorna uma resposta
     function deliveryState(vendaId, estado) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '../../../functions/change_delivery_state.php?vendaid=' + vendaId + '&estado=' + estado, true);

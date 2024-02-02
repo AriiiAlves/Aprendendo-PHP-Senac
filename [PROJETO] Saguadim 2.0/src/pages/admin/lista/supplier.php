@@ -1,8 +1,10 @@
 <?php
 
 include('../../../functions/conectadb.php');
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../../functions/session_validation_user.php');
 
+// Script de ação ao botão "sair"
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
     session_unset();
@@ -68,7 +70,7 @@ if (isset($_POST['sair'])) {
                 <th>Nome do fornecedor</th>
                 <th></th>
                 <?php
-                            
+                    // Coleta nome e id dos fornecedores para criar uma lista
                     $sql = "SELECT fornecedor_nome, fornecedor_id FROM fornecedores";
                     $retorno = mysqli_query($link, $sql);
 
@@ -91,6 +93,7 @@ if (isset($_POST['sair'])) {
 </html>
 
 <script>
+    // Carregando eventos ao carregar a DOM
     document.addEventListener('DOMContentLoaded', function() {
         let profile = document.getElementById("profile");
         let details = document.getElementById("details");
