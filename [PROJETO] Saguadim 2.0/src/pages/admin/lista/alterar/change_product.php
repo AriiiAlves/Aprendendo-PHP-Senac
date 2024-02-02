@@ -68,7 +68,7 @@ while($tbl = mysqli_fetch_array($retorno)) {
             <h2>Encomendas</h2>
             <ul>
                 <li><a href="../../encomendas/requests.php">Solicitadas</a></li> 
-                <li><a href="../../encomendas/waiting.php">Aguardando entrega</a></li>
+                <li><a href="../../encomendas/waiting.php">Aguardando retirada</a></li>
                 <li><a href="../../encomendas/concluded.php">Concluídas</a></li>
             </ul>
         </div>

@@ -56,7 +56,7 @@ $fornecedor_nome = mysqli_fetch_array(mysqli_query($link, $sql))[0];
             <h2>Encomendas</h2>
             <ul>
                 <li><a href="../../encomendas/requests.php">Solicitadas</a></li> 
-                <li><a href="../../encomendas/waiting.php">Aguardando entrega</a></li>
+                <li><a href="../../encomendas/waiting.php">Aguardando retirada</a></li>
                 <li><a href="../../encomendas/concluded.php">Concluídas</a></li>
             </ul>
         </div>
