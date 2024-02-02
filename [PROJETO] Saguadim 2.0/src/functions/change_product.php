@@ -13,6 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $fornecedor_id = $_POST['fornecedor_id'];
     $status = $_POST['status'];
 
+    // Edita os dados do produto
     $sql = "UPDATE produtos SET 
         pro_nome = '$nome',
         pro_descricao = '$descricao',

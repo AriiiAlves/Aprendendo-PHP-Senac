@@ -20,6 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         echo "0";
     }
     else{
+        // Caso não exista, cria o novo fornecedor
         $sql = "INSERT INTO fornecedores(fornecedor_nome) VALUES('$nome')";
         mysqli_query($link, $sql);
 

@@ -1,8 +1,10 @@
 <?php
 
 include('../../../functions/conectadb.php');
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../../functions/session_validation_client.php');
 
+// Script de ação ao botão "sair"
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
     session_unset();
@@ -53,9 +55,11 @@ if (isset($_POST['sair'])) {
         <h2>Pedidos aguardando retirada</h2>
             <?php
 
+            // Seleciona todos os id's de venda únicos cujo estado seja "Aguardando retirada" (a)
             $sql = "SELECT DISTINCT fk_ven_id FROM encomendas WHERE enc_status = 'a'";
             $retorno = mysqli_query($link, $sql);
 
+            // Coletando todos os dados para o botão, dados do usuário e tabela do pedido
             while($tbl = mysqli_fetch_array($retorno)) {
                 $codigoVenda = $tbl[0];
 
@@ -123,6 +127,7 @@ if (isset($_POST['sair'])) {
         </table>
     </div>
     <script>
+        // Carrega os eventos ao carregar a DOM
         document.addEventListener('DOMContentLoaded', function() {
             var profile = document.getElementById("profile");
             var details = document.getElementById("details");
@@ -140,6 +145,7 @@ if (isset($_POST['sair'])) {
             });
         });
 
+        // Script para visualiza ou esconder tabela segundo o seu id de venda
         function viewTable(index) {
             table = document.getElementById('table' + index);
             arrow = document.getElementById('arrow' + index);

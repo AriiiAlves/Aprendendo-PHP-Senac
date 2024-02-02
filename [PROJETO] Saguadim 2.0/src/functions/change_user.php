@@ -9,6 +9,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $senha = $_POST['senha'];
     $status = $_POST['status'];
 
+    // Edita os dados do usuário
     $sql = "UPDATE usuarios SET 
         usu_login = '$login',
         usu_email = '$email',

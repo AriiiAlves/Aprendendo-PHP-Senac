@@ -1,6 +1,7 @@
 <?php
 
 include('../../../functions/conectadb.php');
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../../functions/session_validation_client.php');
 
 if (isset($_POST['sair'])) {
@@ -56,6 +57,7 @@ if (isset($_POST['sair'])) {
 
             <?php 
             
+            // Seleciona todos os produtos da tabela produtos, e seus dados
             $sql = "SELECT pro_id, pro_nome, pro_descricao, pro_preco, pro_quantidade, pro_status FROM produtos";
             $retorno = mysqli_query($link, $sql);
 
@@ -66,7 +68,8 @@ if (isset($_POST['sair'])) {
                 $preco = $tbl[3];
                 $quantidade = $tbl[4];
                 $status = $tbl[5];
-
+                
+                // Se o produto estiver ativo (s), o apresenta ao cliente
                 if ($status === 's' && $quantidade != 0) {
             ?>
 
@@ -101,6 +104,9 @@ if (isset($_POST['sair'])) {
                 <th></th>
                 
                 <?php
+                // Se houver um código de venda (o que significa que já há um produto adicionado ao carrinho),
+                // seleciona todos os dados do item adicionado ao pedido pelo usuário (quantidade, valor total, etc.)
+                // e calcula o total
                 if(isset($_SESSION['codigo_venda'])) {
                     $sql = "SELECT iv_id, iv_quantidade, iv_total, pro_nome, pro_preco FROM item_venda 
                             INNER JOIN produtos ON item_venda.fk_pro_id = produtos.pro_id
@@ -139,6 +145,7 @@ if (isset($_POST['sair'])) {
                 <?php
                 }
                 else {
+                    // Se não houver item ou pedido ativo, mostra um total vazio (0)
                 ?>
                     <tr>
                         <td>Total</td>
@@ -159,6 +166,7 @@ if (isset($_POST['sair'])) {
         </div>
     </div>
     <script>
+        // Carrega os eventos ao carregar a DOM
         document.addEventListener('DOMContentLoaded', function() {
             var profile = document.getElementById("profile");
             var details = document.getElementById("details");
@@ -168,9 +176,11 @@ if (isset($_POST['sair'])) {
             var descCard = document.querySelectorAll('.desc_card');
             var deliveryDate = document.getElementById("delivery_date");
 
+            // Definindo o mínimo da data de entrega da encomenda como o dia atual
             var todayDate = new Date();
             deliveryDate.min = todayDate.toISOString().slice(0, 16).replace('T', ' ');
 
+            // Definindo o máximo da data de entrega da encomenda para um mês a partir do dia atual
             todayDate.setDate(todayDate.getDate() + 28);
             deliveryDate.max = todayDate.toISOString().slice(0, 16).replace('T', ' ');
 
@@ -191,6 +201,8 @@ if (isset($_POST['sair'])) {
                 details.style.opacity = 1;
             });
 
+            // Se houver 3 produtos ou menos no catálogo somente, esconde os botões de navegação
+            // Se não, mostra
             if (cards.length <= 3) {
                 leftButton.style.display = 'none';
                 rightButton.style.display = 'none';
@@ -200,7 +212,10 @@ if (isset($_POST['sair'])) {
                 rightButton.style.display = 'block';
             }
 
-
+            // Calcula a largura do texto de descrição. É um tratamento para caso a descrição fique muito
+            // grande, mesmo com o limite de caracteres aplicado no cadastro, por conta do tex-align: center,
+            // que move as palavras para baixo, aumentando o espaço ocupado. Se a descrição for maior que o tamanho
+            // disponível, elimina o texto excedente e acrescenta reticências (...)
             for (var i = 0; i < descCard.length; i++) { 
                 var descSpan = descCard[i].getElementsByTagName('span')[0];
                 if (descSpan.clientHeight > 58) {
@@ -213,6 +228,7 @@ if (isset($_POST['sair'])) {
             }
         });
 
+        // Move o catálogo para a esquerda
         function leftClick() {
             var cards = document.querySelectorAll('.product_card');
             
@@ -239,6 +255,7 @@ if (isset($_POST['sair'])) {
             }
         }
 
+        // Move o catálogo para a direita
         function rightClick() {
             var cards = document.querySelectorAll('.product_card');
             var chooseNewSize = 0 - (cards.length * (200 + 20));
@@ -265,6 +282,7 @@ if (isset($_POST['sair'])) {
             }
         }
 
+        // Adiciona um produto ao pedido do cliente por meio de um script AJAX, e recarrega a página
         function addProduct(id) {
             let proInput = document.getElementById('pro' + id);
             let proQuantity = proInput.value;
@@ -305,6 +323,7 @@ if (isset($_POST['sair'])) {
             }
         }
 
+        // Deleta um produto do pedido do cliente por meio de um script AJAX, e recarrega a página
         function deleteItem(codigo_venda) {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '../../../functions/delete_item_venda.php', true);
@@ -333,6 +352,7 @@ if (isset($_POST['sair'])) {
             xhr.send(params);
         }
 
+        // Finaliza o pedido e cria a encomenda por meio de um script acionado via AJAX
         function endOrder() {
             var deliveryDate = document.getElementById("delivery_date").value;
             var deliverDateVerify = new Date(deliveryDate);

@@ -26,10 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $resultado = $tbl[0];
     }
     
+    // Se não existir um usuário com esse email/senha, retorna um erro(aviso)
     if ($resultado == 0){
         echo("0");
     }
     else{
+        // Se existir, realiza o login e preenche as variáveis de sessão
         $sql = "SELECT * FROM clientes 
         WHERE cli_email = '$email'
         AND cli_senha = '$senha'

@@ -8,11 +8,16 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
     // Registrar encomenda
     try {
+        // Verifica se há um carrinho/pedido aberto. Se não há, retorna o erro de carrinho vazio
+        // (na verdade, o cliente não acrescentou nenhum item ao pedido após o login, o que faz com
+        // que o id de venda esteja vazio)
         if(isset($_SESSION['codigo_venda'])) {
+            // Retorna a quantidade de itens, se há um id de venda existente
             $codigo_venda = $_SESSION['codigo_venda'];
             $sql = "SELECT COUNT(iv_id) FROM item_venda WHERE iv_codigo =" . $codigo_venda;
             $retorno = mysqli_fetch_array(mysqli_query($link, $sql))[0];
-    
+            
+            // Se há pelo menos 1 item no carrinho/pedido, continua, se não retorna um erro
             if($retorno > 0) {
                 // Verificando se a quantidade pedida não é maior que a em estoque
                 $sql = "SELECT DISTINCT fk_pro_id FROM item_venda WHERE iv_codigo = " . $codigo_venda;
@@ -34,6 +39,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                     }
                 }
                 
+                // Se a quantidade dos itens pedida excede o estoque, retorna um erro.
+                // Caso não seja, continua no else
                 if ($problemaEstoque) {
                     echo("stock_problem");
                 }

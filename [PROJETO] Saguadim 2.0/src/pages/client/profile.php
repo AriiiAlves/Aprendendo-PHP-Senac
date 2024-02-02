@@ -1,8 +1,10 @@
 <?php
 
 include('../../functions/conectadb.php');
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../functions/session_validation_client.php');
 
+// Script de ação ao botão "sair"
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
     session_unset();
@@ -16,6 +18,8 @@ if (isset($_POST['sair'])) {
 }
 
 $cli_id = $_SESSION['idusuario'];
+
+// Seleciona todos os dados do usuário
 $sql = "SELECT * FROM clientes WHERE cli_id = $cli_id";
 $retorno = mysqli_query($link, $sql);
 
@@ -109,6 +113,7 @@ while($tbl = mysqli_fetch_array($retorno)) {
 </html>
 
 <script>
+    // Carrega os eventos ao carregar a DOM
     document.addEventListener('DOMContentLoaded', function() {
         let profile = document.getElementById("profile");
         let details = document.getElementById("details");
@@ -131,6 +136,7 @@ while($tbl = mysqli_fetch_array($retorno)) {
         });
     });
 
+    // Script AJAX que tenta alterar a senha e retorna uma resposta
     function submitForm() {
         var senha = document.getElementById('senha').value;
         var nova_senha = document.getElementById('nova_senha').value;

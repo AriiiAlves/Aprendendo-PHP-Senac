@@ -11,9 +11,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $validade = $_POST['validade'];
     $fornecedor_id = $_POST['fornecedor'];
 
+    // Verificando se já existe um produto com o mesmo nome registrado
     $sql = "SELECT COUNT(pro_id) FROM produtos WHERE pro_nome = '$nome'";
     $cont = mysqli_fetch_array(mysqli_query($link, $sql))[0];
 
+    // Se não existe, cria o novo produto. Caso contrário, retorna um erro.
     if ($cont == 0){
         $sql = "INSERT INTO produtos(pro_nome, pro_descricao, pro_custo, pro_preco, pro_quantidade, pro_validade, pro_status, fk_fornecedor_id) VALUES('$nome','$descricao',$custo,$preco,$quantidade,'$validade','s', $fornecedor_id)";
         mysqli_query($link, $sql);

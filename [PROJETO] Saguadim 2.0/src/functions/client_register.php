@@ -26,6 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         echo "0";
     }
     else{
+        // Se não existe, cria o cliente novo no banco
         $sql = "INSERT INTO clientes(cli_nome, cli_email, cli_senha, cli_telefone, cli_cpf, cli_curso, cli_sala, cli_status, cli_saldo) 
             VALUES('$nome', '$email', '$senha', '$telefone', '$cpf', '$curso', $sala, 's', 0)";
         mysqli_query($link, $sql);

@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo("0");
     }
     else{
+        // Selecionando os dados do usuário
         $sql = "SELECT * FROM usuarios 
         WHERE usu_email = '$email'
         AND usu_senha = '$senha'
@@ -44,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         
         session_set_cookie_params(60 * 60 * 24 * 30); // Define a duração da sessão para 30 dias
         session_start();
-    
+        
+        // Aplicando os dados do usuário para as variáveis de sessão
         while ($tbl = mysqli_fetch_array($retorno)){
             $_SESSION['tiposessao'] = 'user';
             $_SESSION['idusuario'] = $tbl[0];

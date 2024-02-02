@@ -7,11 +7,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     try {
         $pro_id = $_POST['pro_id'];
         $quantidade = $_POST['quantidade'];
-    
+        
+        // Seleciona o preço do produto solicitado para entrar no carrinho
         $sql = 'SELECT pro_preco FROM produtos WHERE pro_id =' . $pro_id;
         $preco = mysqli_fetch_array(mysqli_query($link, $sql))[0];
         $total = $preco * $quantidade;
         
+        // Se não houver um id de venda ativo, cria um novo, que tem que ser diferente de todos os já existentes
         if(empty($_SESSION['codigo_venda'])) {
             $codigo_venda = rand(1, 9999999);
             $sql = 'SELECT COUNT(iv_id) FROM item_venda WHERE iv_codigo = ' . $codigo_venda;
@@ -28,7 +30,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         else {
             $codigo_venda = $_SESSION['codigo_venda'];
         }
-    
+        
+        // Com a existência do id de venda garantida, insere o item ao carrinho/pedido aberto do cliente
         $sql = 'INSERT INTO item_venda(iv_quantidade, iv_total, iv_codigo, fk_pro_id)
                 VALUES(' . $quantidade . ',' . $total . ',' . $codigo_venda . ',' . $pro_id . ')';
         mysqli_query($link, $sql);

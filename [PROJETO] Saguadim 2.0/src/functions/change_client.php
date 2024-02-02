@@ -14,6 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $status = $_POST['status'];
     $saldo = $_POST['saldo'];
 
+    // Edita os dados do cliente
     $sql = "UPDATE clientes SET 
         cli_nome = '$nome',
         cli_email = '$email',

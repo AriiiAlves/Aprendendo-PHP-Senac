@@ -1,8 +1,10 @@
 <?php
 
 include('../../functions/conectadb.php');
+// Valida se há um usuário logado. Se não, retorna à página de login
 include('../../functions/session_validation_client.php');
 
+// Script de ação ao botão "sair"
 if (isset($_POST['sair'])) {
     // Destrói todas as variáveis de sessão
     session_unset();
@@ -15,6 +17,7 @@ if (isset($_POST['sair'])) {
     exit(); // Certifique-se de encerrar o script após o redirecionamento
 }
 
+// Seleciona a quantidade de encomendas em preparo ou aguardando retirada para notificação
 $sql = "SELECT COUNT(DISTINCT fk_ven_id) FROM encomendas WHERE fk_cli_id = " . $_SESSION['idusuario'] . " AND (enc_status = 's' OR enc_status = 'a')";
 $pedidos = mysqli_fetch_array(mysqli_query($link, $sql))[0];
 
@@ -51,7 +54,8 @@ $pedidos = mysqli_fetch_array(mysqli_query($link, $sql))[0];
         <a href="pedidos/requests_home.php">
             <div>
                 <?php
-                
+
+                // Se houver encomendas em preparo ou aguardando retirada, mostra a notificação 
                 if($pedidos > 0) {
                 ?>
                     <span><?= $pedidos ?></span>
@@ -83,6 +87,7 @@ $pedidos = mysqli_fetch_array(mysqli_query($link, $sql))[0];
         </p>
     </div>
     <script>
+        // Carrega os eventos ao carregar a DOM
         document.addEventListener('DOMContentLoaded', function() {
             let profile = document.getElementById("profile");
             let details = document.getElementById("details");

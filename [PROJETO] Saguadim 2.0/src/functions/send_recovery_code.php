@@ -2,6 +2,9 @@
 
 include("conectadb.php");
 
+// O código abaixo funciona, o problema é o controle da conta do outlook que bloqueia bots e contas
+// atestadas como geradoras de spam
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
